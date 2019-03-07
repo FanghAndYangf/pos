@@ -48,12 +48,10 @@
         </javaClientGenerator>
 
         <!--生成对应表及类名 -->
-        <table catalog="poss" tableName="AS_USER" enableCountByExample="false"
-               enableUpdateByExample="false" enableDeleteByExample="false"
-               enableSelectByExample="false" selectByExampleQueryId="false">
+        <table catalog="poss" tableName="POS_CASHIERS">
             <property name="useActualColumnNames" value="false" />
                 <!-- 需要插入时返回主键值，请将此属性打开，column值为主键的列明 -->
-            <generatedKey column="USER_KEY" sqlStatement="MySql" identity="true" />
+            <generatedKey column="CASHIER_KEY" sqlStatement="MySql" identity="true" />
         </table>
     </context>
 </generatorConfiguration>
