@@ -30,7 +30,7 @@ public class Swagger2 {
         return new ApiInfoBuilder()
                 .title("收银后台")
                 .description("管理员注册、收银员注册")
-                .termsOfServiceUrl("http://localhost/api/")
+                .termsOfServiceUrl("http://148.70.129.240:8080/api/")
                 .version("1.0.0")
                 .build();
     }
