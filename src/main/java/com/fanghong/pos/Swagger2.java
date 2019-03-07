@@ -28,10 +28,10 @@ public class Swagger2 {
     private ApiInfo apiInfo(){
 
         return new ApiInfoBuilder()
-                .title("收银后台：用户管理 、收银机管理 、后台 APIS")
-                .description("这是一个简单的文档例子")
+                .title("收银后台")
+                .description("管理员注册、收银员注册")
                 .termsOfServiceUrl("http://localhost/api/")
-                .contact("程序员")
+                .contact("fanghong")
                 .version("1.0.0")
                 .build();
     }
