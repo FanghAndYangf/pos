@@ -31,7 +31,6 @@ public class Swagger2 {
                 .title("收银后台")
                 .description("管理员注册、收银员注册")
                 .termsOfServiceUrl("http://localhost/api/")
-                .contact("fanghong")
                 .version("1.0.0")
                 .build();
     }
