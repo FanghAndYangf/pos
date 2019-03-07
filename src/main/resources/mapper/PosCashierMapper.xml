@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fanghong.pos.Dao.PosCashierMapper">
+  <resultMap id="BaseResultMap" type="com.fanghong.pos.Model.PosCashier">
+    <id column="CASHIER_KEY" jdbcType="INTEGER" property="cashierKey" />
+    <result column="CASHIER_PASSWORD" jdbcType="CHAR" property="cashierPassword" />
+    <result column="USER_ID" jdbcType="CHAR" property="userId" />
+    <result column="USER_PASSWORD" jdbcType="CHAR" property="userPassword" />
+    <result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
+    <result column="USER_MOBILE" jdbcType="CHAR" property="userMobile" />
+    <result column="DEPT_ID" jdbcType="CHAR" property="deptId" />
+    <result column="CASHIER_STATUS" jdbcType="CHAR" property="cashierStatus" />
+    <result column="REGIST_TYPE" jdbcType="CHAR" property="registType" />
+    <result column="RESOURCE_FROM" jdbcType="CHAR" property="resourceFrom" />
+    <result column="CREATETS" jdbcType="TIMESTAMP" property="createts" />
+    <result column="MODIFIYTS" jdbcType="TIMESTAMP" property="modifiyts" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    CASHIER_KEY, CASHIER_PASSWORD, USER_ID, USER_PASSWORD, USER_NAME, USER_MOBILE, DEPT_ID, 
+    CASHIER_STATUS, REGIST_TYPE, RESOURCE_FROM, CREATETS, MODIFIYTS
+  </sql>
+  <select id="selectByExample" parameterType="com.fanghong.pos.Model.PosCashierExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from poss..POS_CASHIER
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from poss..POS_CASHIER
+    where CASHIER_KEY = #{cashierKey,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from poss..POS_CASHIER
+    where CASHIER_KEY = #{cashierKey,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.fanghong.pos.Model.PosCashierExample">
+    delete from poss..POS_CASHIER
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.fanghong.pos.Model.PosCashier">
+    <selectKey keyProperty="cashierKey" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into poss..POS_CASHIER (CASHIER_PASSWORD, USER_ID, USER_PASSWORD, 
+      USER_NAME, USER_MOBILE, DEPT_ID, 
+      CASHIER_STATUS, REGIST_TYPE, RESOURCE_FROM, 
+      CREATETS, MODIFIYTS)
+    values (#{cashierPassword,jdbcType=CHAR}, #{userId,jdbcType=CHAR}, #{userPassword,jdbcType=CHAR}, 
+      #{userName,jdbcType=VARCHAR}, #{userMobile,jdbcType=CHAR}, #{deptId,jdbcType=CHAR}, 
+      #{cashierStatus,jdbcType=CHAR}, #{registType,jdbcType=CHAR}, #{resourceFrom,jdbcType=CHAR}, 
+      #{createts,jdbcType=TIMESTAMP}, #{modifiyts,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fanghong.pos.Model.PosCashier">
+    <selectKey keyProperty="cashierKey" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into poss..POS_CASHIER
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cashierPassword != null">
+        CASHIER_PASSWORD,
+      </if>
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="userPassword != null">
+        USER_PASSWORD,
+      </if>
+      <if test="userName != null">
+        USER_NAME,
+      </if>
+      <if test="userMobile != null">
+        USER_MOBILE,
+      </if>
+      <if test="deptId != null">
+        DEPT_ID,
+      </if>
+      <if test="cashierStatus != null">
+        CASHIER_STATUS,
+      </if>
+      <if test="registType != null">
+        REGIST_TYPE,
+      </if>
+      <if test="resourceFrom != null">
+        RESOURCE_FROM,
+      </if>
+      <if test="createts != null">
+        CREATETS,
+      </if>
+      <if test="modifiyts != null">
+        MODIFIYTS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cashierPassword != null">
+        #{cashierPassword,jdbcType=CHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=CHAR},
+      </if>
+      <if test="userPassword != null">
+        #{userPassword,jdbcType=CHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userMobile != null">
+        #{userMobile,jdbcType=CHAR},
+      </if>
+      <if test="deptId != null">
+        #{deptId,jdbcType=CHAR},
+      </if>
+      <if test="cashierStatus != null">
+        #{cashierStatus,jdbcType=CHAR},
+      </if>
+      <if test="registType != null">
+        #{registType,jdbcType=CHAR},
+      </if>
+      <if test="resourceFrom != null">
+        #{resourceFrom,jdbcType=CHAR},
+      </if>
+      <if test="createts != null">
+        #{createts,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiyts != null">
+        #{modifiyts,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.fanghong.pos.Model.PosCashierExample" resultType="java.lang.Long">
+    select count(*) from poss..POS_CASHIER
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update poss..POS_CASHIER
+    <set>
+      <if test="record.cashierKey != null">
+        CASHIER_KEY = #{record.cashierKey,jdbcType=INTEGER},
+      </if>
+      <if test="record.cashierPassword != null">
+        CASHIER_PASSWORD = #{record.cashierPassword,jdbcType=CHAR},
+      </if>
+      <if test="record.userId != null">
+        USER_ID = #{record.userId,jdbcType=CHAR},
+      </if>
+      <if test="record.userPassword != null">
+        USER_PASSWORD = #{record.userPassword,jdbcType=CHAR},
+      </if>
+      <if test="record.userName != null">
+        USER_NAME = #{record.userName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userMobile != null">
+        USER_MOBILE = #{record.userMobile,jdbcType=CHAR},
+      </if>
+      <if test="record.deptId != null">
+        DEPT_ID = #{record.deptId,jdbcType=CHAR},
+      </if>
+      <if test="record.cashierStatus != null">
+        CASHIER_STATUS = #{record.cashierStatus,jdbcType=CHAR},
+      </if>
+      <if test="record.registType != null">
+        REGIST_TYPE = #{record.registType,jdbcType=CHAR},
+      </if>
+      <if test="record.resourceFrom != null">
+        RESOURCE_FROM = #{record.resourceFrom,jdbcType=CHAR},
+      </if>
+      <if test="record.createts != null">
+        CREATETS = #{record.createts,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifiyts != null">
+        MODIFIYTS = #{record.modifiyts,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update poss..POS_CASHIER
+    set CASHIER_KEY = #{record.cashierKey,jdbcType=INTEGER},
+      CASHIER_PASSWORD = #{record.cashierPassword,jdbcType=CHAR},
+      USER_ID = #{record.userId,jdbcType=CHAR},
+      USER_PASSWORD = #{record.userPassword,jdbcType=CHAR},
+      USER_NAME = #{record.userName,jdbcType=VARCHAR},
+      USER_MOBILE = #{record.userMobile,jdbcType=CHAR},
+      DEPT_ID = #{record.deptId,jdbcType=CHAR},
+      CASHIER_STATUS = #{record.cashierStatus,jdbcType=CHAR},
+      REGIST_TYPE = #{record.registType,jdbcType=CHAR},
+      RESOURCE_FROM = #{record.resourceFrom,jdbcType=CHAR},
+      CREATETS = #{record.createts,jdbcType=TIMESTAMP},
+      MODIFIYTS = #{record.modifiyts,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fanghong.pos.Model.PosCashier">
+    update poss..POS_CASHIER
+    <set>
+      <if test="cashierPassword != null">
+        CASHIER_PASSWORD = #{cashierPassword,jdbcType=CHAR},
+      </if>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=CHAR},
+      </if>
+      <if test="userPassword != null">
+        USER_PASSWORD = #{userPassword,jdbcType=CHAR},
+      </if>
+      <if test="userName != null">
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userMobile != null">
+        USER_MOBILE = #{userMobile,jdbcType=CHAR},
+      </if>
+      <if test="deptId != null">
+        DEPT_ID = #{deptId,jdbcType=CHAR},
+      </if>
+      <if test="cashierStatus != null">
+        CASHIER_STATUS = #{cashierStatus,jdbcType=CHAR},
+      </if>
+      <if test="registType != null">
+        REGIST_TYPE = #{registType,jdbcType=CHAR},
+      </if>
+      <if test="resourceFrom != null">
+        RESOURCE_FROM = #{resourceFrom,jdbcType=CHAR},
+      </if>
+      <if test="createts != null">
+        CREATETS = #{createts,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiyts != null">
+        MODIFIYTS = #{modifiyts,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where CASHIER_KEY = #{cashierKey,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fanghong.pos.Model.PosCashier">
+    update poss..POS_CASHIER
+    set CASHIER_PASSWORD = #{cashierPassword,jdbcType=CHAR},
+      USER_ID = #{userId,jdbcType=CHAR},
+      USER_PASSWORD = #{userPassword,jdbcType=CHAR},
+      USER_NAME = #{userName,jdbcType=VARCHAR},
+      USER_MOBILE = #{userMobile,jdbcType=CHAR},
+      DEPT_ID = #{deptId,jdbcType=CHAR},
+      CASHIER_STATUS = #{cashierStatus,jdbcType=CHAR},
+      REGIST_TYPE = #{registType,jdbcType=CHAR},
+      RESOURCE_FROM = #{resourceFrom,jdbcType=CHAR},
+      CREATETS = #{createts,jdbcType=TIMESTAMP},
+      MODIFIYTS = #{modifiyts,jdbcType=TIMESTAMP}
+    where CASHIER_KEY = #{cashierKey,jdbcType=INTEGER}
+  </update>
+</mapper>

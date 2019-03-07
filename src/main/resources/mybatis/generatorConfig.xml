@@ -48,7 +48,7 @@
         </javaClientGenerator>
 
         <!--生成对应表及类名 -->
-        <table catalog="poss" tableName="POS_CASHIERS">
+        <table catalog="poss" tableName="POS_CASHIER">
             <property name="useActualColumnNames" value="false" />
                 <!-- 需要插入时返回主键值，请将此属性打开，column值为主键的列明 -->
             <generatedKey column="CASHIER_KEY" sqlStatement="MySql" identity="true" />

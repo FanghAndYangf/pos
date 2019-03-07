@@ -63,11 +63,11 @@
         </createTable>
     </changeSet>
     <changeSet author="fanghong" id="T000-20190307-001">
-        <createTable tableName="POS_CASHIERS" remarks="收银员表">
-            <column name="LOGIN_ID" type="int" remarks="收银员主键" autoIncrement="true" startWith="1000">
+        <createTable tableName="POS_CASHIER" remarks="收银员表">
+            <column name="CASHIER_KEY" type="int" remarks="收银员主键" autoIncrement="true" startWith="1000">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="PK_POS_CASHIER_KEY"></constraints>
             </column>
-            <column name="LOGIN_PASSWORD" type="char(60)" remarks="登陆密码">
+            <column name="CASHIER_PASSWORD" type="char(60)" remarks="登陆密码">
                 <constraints nullable="false"></constraints>
             </column>
             <column name="USER_ID" type="char(60)" remarks="管理员登录id">
