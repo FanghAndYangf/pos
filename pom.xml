@@ -95,7 +95,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
 
-            <plugin>
+            <!--<plugin>
                 <groupId>org.liquibase</groupId>
                 <artifactId>liquibase-maven-plugin</artifactId>
                 <version>3.4.2</version>
@@ -123,18 +123,15 @@
                 <executions>
                     <execution>
                         <id>Generate MyBatis Artifacts</id>
-                        <phase>package</phase>
+                        <phase>compile</phase>
                         <goals>
                             <goal>generate</goal>
                         </goals>
                     </execution>
                 </executions>
                 <configuration>
-                    <!-- generator 工具配置文件的位置 -->
                     <configurationFile>src/main/resources/mybatis/generatorConfig.xml</configurationFile>
-                    <!--允许移动生成的文件 -->
                     <verbose>true</verbose>
-                    <!-- 是否覆盖 -->
                     <overwrite>true</overwrite>
                 </configuration>
                 <dependencies>
@@ -144,7 +141,7 @@
                         <version>8.0.15</version>
                     </dependency>
                 </dependencies>
-            </plugin>
+            </plugin>-->
         </plugins>
     </build>
 
