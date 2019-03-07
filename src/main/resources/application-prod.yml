@@ -33,8 +33,6 @@ spring:
   #liquibase
   liquibase:
     enabled: false
-  profiles:
-    active: dev
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml
@@ -54,5 +52,5 @@ logging:
   file: springboot.log
 
 log:
-  path: /Users/fanghong/logs
+  path: /home/fanghong/logs
   level: debug

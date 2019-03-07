@@ -6,7 +6,8 @@
 <configuration  scan="true" scanPeriod="10 seconds">
     <!--<include resource="org/springframework/boot/logging/logback/base.xml" />-->
     <contextName>logback</contextName>
-    <property name="log.path" value="/Users/fanghong/logs" />
+    <springProperty scope="context" name="logLevel" source="log.level"/>
+    <springProperty scope="context" name="logPath" source="log.path"/>
     <!-- 彩色日志 -->
     <!-- 彩色日志依赖的渲染类 -->
     <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter" />
