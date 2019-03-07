@@ -64,8 +64,11 @@
     </changeSet>
     <changeSet author="fanghong" id="T000-20190307-001">
         <createTable tableName="POS_CASHIERS" remarks="收银员表">
-            <column name="CASHIER_KEY" type="int" remarks="收银员主键" autoIncrement="true" startWith="1">
+            <column name="LOGIN_ID" type="int" remarks="收银员主键" autoIncrement="true" startWith="1000">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="PK_POS_CASHIER_KEY"></constraints>
+            </column>
+            <column name="LOGIN_PASSWORD" type="char(60)" remarks="登陆密码">
+                <constraints nullable="false"></constraints>
             </column>
             <column name="USER_ID" type="char(60)" remarks="管理员登录id">
                 <constraints nullable="false"></constraints>
@@ -74,12 +77,6 @@
                 <constraints nullable="false"></constraints>
             </column>
             <column name="USER_NAME" type="varchar(90)" remarks="用户名称">
-                <constraints nullable="false"></constraints>
-            </column>
-            <column name="LOGIN_ID" type="char(60)" remarks="登陆id">
-                <constraints nullable="false"></constraints>
-            </column>
-            <column name="LOGIN_PASSWORD" type="char(60)" remarks="登陆密码">
                 <constraints nullable="false"></constraints>
             </column>
             <column name="USER_MOBILE" type="char(11)" remarks="用户手机号"></column>
