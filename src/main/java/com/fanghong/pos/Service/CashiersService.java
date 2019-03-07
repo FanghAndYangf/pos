@@ -1,11 +1,11 @@
 package com.fanghong.pos.Service;
 
-import com.fanghong.pos.Model.PosCashier;
+import com.fanghong.pos.Model.Cashier;
 import com.github.pagehelper.PageInfo;
 
 public interface CashiersService {
 
-    int addCashier(PosCashier posCashiers);
+    int addCashier(Cashier cashier);
 
-    PageInfo<PosCashier> listAllUser(int pageNum, int pageSize);
+    PageInfo<Cashier> listAllUser(int pageNum, int pageSize);
 }

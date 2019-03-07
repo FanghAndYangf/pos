@@ -77,7 +77,6 @@
                 <constraints nullable="false"></constraints>
             </column>
             <column name="USER_NAME" type="varchar(90)" remarks="用户名称">
-                <constraints nullable="false"></constraints>
             </column>
             <column name="USER_MOBILE" type="char(11)" remarks="用户手机号"></column>
             <column name="DEPT_ID" type="char(20)" remarks="部门编号"></column>

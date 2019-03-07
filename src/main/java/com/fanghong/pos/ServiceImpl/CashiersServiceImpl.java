@@ -1,7 +1,7 @@
 package com.fanghong.pos.ServiceImpl;
 
-import com.fanghong.pos.Dao.PosCashierMapper;
-import com.fanghong.pos.Model.PosCashier;
+import com.fanghong.pos.Dao.CashierMapper;
+import com.fanghong.pos.Model.Cashier;
 import com.fanghong.pos.Service.CashiersService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
@@ -12,16 +12,16 @@ import javax.annotation.Resource;
 public class CashiersServiceImpl implements CashiersService {
 
     @Resource
-    private PosCashierMapper posCashiersMapper;
+    private CashierMapper cashierMapper;
 
     @Override
-    public int addCashier(PosCashier posCashier) {
+    public int addCashier(Cashier cashier) {
 
-        return posCashiersMapper.insert(posCashier);
+        return cashierMapper.insert(cashier);
     }
 
     @Override
-    public PageInfo<PosCashier> listAllUser(int pageNum, int pageSize) {
+    public PageInfo<Cashier> listAllUser(int pageNum, int pageSize) {
 
         //PageHelper.startPage(pageNum, pageSize);
         //List<AsUser> userList = asUserMapper.selectByPrimaryKey()

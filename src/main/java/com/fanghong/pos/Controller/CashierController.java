@@ -1,6 +1,6 @@
 package com.fanghong.pos.Controller;
 
-import com.fanghong.pos.Model.PosCashier;
+import com.fanghong.pos.Model.Cashier;
 import com.fanghong.pos.Result.JsonResult;
 import com.fanghong.pos.Result.ResponseBody.RegisterCashierBody;
 import com.fanghong.pos.ServiceImpl.CashiersServiceImpl;
@@ -30,20 +30,20 @@ public class CashierController {
 
     /**
      * 注册管理员
-     * @param posCashier
+     * @param cashier
      * @return LOGIN_ID
      **/
-    @ApiOperation(value = "注册管理员用户", notes = "根据 PosCashier 对象创建管理员用户",response = RegisterCashierBody.class)
-    @ApiImplicitParam(name = "PosCashier", value = "收银员详细实体", required = true, dataType = "PosCashier")
+    @ApiOperation(value = "注册管理员用户", notes = "根据 Cashier 对象创建管理员用户",response = RegisterCashierBody.class)
+    @ApiImplicitParam(name = "Cashier", value = "收银员详细实体", required = true, dataType = "Cashier")
     @RequestMapping(value = "cashier", method = RequestMethod.POST)
-    public ResponseEntity<JsonResult> add(@RequestBody PosCashier posCashier){
+    public ResponseEntity<JsonResult> add(@RequestBody Cashier cashier){
         JsonResult r = new JsonResult();
-        posCashier.setCreatets(new Date());     //获取当前时间
-        posCashier.setCashierStatus("1");       //默认启用状态
-        posCashier.setRegistType("0");          //个体收银
-        int loginId = cashiersService.addCashier(posCashier);
+        cashier.setCreatets(new Date());     //获取当前时间
+        cashier.setCashierStatus("1");       //默认启用状态
+        cashier.setRegistType("0");          //个体收银
+        int loginId = cashiersService.addCashier(cashier);
         RegisterCashierBody registerCashierBody = new RegisterCashierBody();
-        registerCashierBody.setLoginId(String.valueOf(loginId));
+        registerCashierBody.setLoginId(String.valueOf(cashier.getCashierKey()));
         r.setStatus("success");
         r.setData(registerCashierBody);
         r.setMessage("管理员创建成功!");
