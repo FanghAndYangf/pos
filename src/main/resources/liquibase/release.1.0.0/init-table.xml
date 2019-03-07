@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="fanghong" id="T000-20190304-001">
+        <createTable tableName="POS_CASHERS" remarks="收银机注册表">
+            <column name="POS_KEY" type="int" remarks="收银机主键" autoIncrement="true" startWith="1">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_POS_CASHERS_KEY"></constraints>
+            </column>
+            <column name="POS_ID" type="char(8)" remarks="收银机登陆id">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="POS_MAC" type="varchar(60)" remarks="收银机网卡MAC地址">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="HOST_NAME" type="varchar(40)" remarks="收银机电脑主机名">
+            </column>
+            <column name="IP" type="char(20)" remarks="收银机IP"></column>
+            <column name="POS_NAME" type="varchar(120)" remarks="收银机名称">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="POS_TYPE" type="char(4)" remarks="收银机用途"></column>
+            <column name="STORE_ID" type="char(4)" remarks="店铺ID">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="POS_STATUS" type="ENUM('0','1')" remarks="收银机状态" defaultValue="0">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="POS_ORGANIZATION_CODE" type="char(60)" remarks="连锁总部CODE"></column>
+            <column name="PRE_PAID_FLAG" type="char(1)" remarks="是否开启储值功能"></column>
+            <column name="CREATETS" type="timestamp" remarks="创建日期"></column>
+            <column name="MODIFIYTS" type="timestamp" remarks="更新日期"></column>
+        </createTable>
+    </changeSet>
+    <changeSet author="fanghong" id="T000-20190305-001">
+        <createTable tableName="AS_USER" remarks="系统用户表">
+            <column name="USER_KEY" type="int" remarks="用户主键" autoIncrement="true" startWith="1">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_AS_USER_KEY"></constraints>
+            </column>
+            <column name="USER_ID" type="char(4)" remarks="用户id">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="LOGIN_ID" type="char(60)" remarks="登陆id">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="USER_NAME" type="varchar(90)" remarks="用户名称">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="USER_MOBILE" type="char(11)" remarks="用户手机号"></column>
+            <column name="DEPT_ID" type="char(20)" remarks="部门编号"></column>
+            <column name="USER_STATUS" type="char(1)" remarks="用户状态">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="REGIST_TYPE" type="char(1)" remarks="注册类型">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="RESOURCE_FROM" type="char(30)" remarks="注册来源渠道">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="CREATETS" type="timestamp" remarks="创建日期"></column>
+            <column name="MODIFIYTS" type="timestamp" remarks="更新日期"></column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
