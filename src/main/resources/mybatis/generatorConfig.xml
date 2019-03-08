@@ -54,5 +54,12 @@
                 <!-- 需要插入时返回主键值，请将此属性打开，column值为主键的列明 -->
             <generatedKey column="CASHIER_KEY" sqlStatement="MySql" identity="true" />
         </table>
+
+        <table tableName="POS_REGISTER" domainObjectName="Pos">
+            <property name="ignoreQualifiersAtRuntime" value="false"/>
+            <property name="useActualColumnNames" value="false" />
+            <!-- 需要插入时返回主键值，请将此属性打开，column值为主键的列明 -->
+            <generatedKey column="POS_KEY" sqlStatement="MySql" identity="true" />
+        </table>
     </context>
 </generatorConfiguration>

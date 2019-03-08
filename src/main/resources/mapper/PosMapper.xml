@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fanghong.pos.Dao.PosMapper">
+  <resultMap id="BaseResultMap" type="com.fanghong.pos.Model.Pos">
+    <result column="POS_KEY" jdbcType="INTEGER" property="posKey" />
+    <result column="POS_MAC" jdbcType="VARCHAR" property="posMac" />
+    <result column="HOST_NAME" jdbcType="VARCHAR" property="hostName" />
+    <result column="IP" jdbcType="CHAR" property="ip" />
+    <result column="POS_NAME" jdbcType="VARCHAR" property="posName" />
+    <result column="POS_TYPE" jdbcType="CHAR" property="posType" />
+    <result column="STORE_ID" jdbcType="CHAR" property="storeId" />
+    <result column="POS_STATUS" jdbcType="CHAR" property="posStatus" />
+    <result column="POS_ORGANIZATION_CODE" jdbcType="CHAR" property="posOrganizationCode" />
+    <result column="PRE_PAID_FLAG" jdbcType="CHAR" property="prePaidFlag" />
+    <result column="CREATETS" jdbcType="TIMESTAMP" property="createts" />
+    <result column="MODIFIYTS" jdbcType="TIMESTAMP" property="modifiyts" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    POS_KEY, POS_MAC, HOST_NAME, IP, POS_NAME, POS_TYPE, STORE_ID, POS_STATUS, POS_ORGANIZATION_CODE, 
+    PRE_PAID_FLAG, CREATETS, MODIFIYTS
+  </sql>
+  <select id="selectByExample" parameterType="com.fanghong.pos.Model.PosExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from POS_REGISTER
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.fanghong.pos.Model.PosExample">
+    delete from POS_REGISTER
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.fanghong.pos.Model.Pos">
+    <selectKey keyProperty="posKey" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into POS_REGISTER (POS_MAC, HOST_NAME, IP, 
+      POS_NAME, POS_TYPE, STORE_ID, 
+      POS_STATUS, POS_ORGANIZATION_CODE, PRE_PAID_FLAG, 
+      CREATETS, MODIFIYTS)
+    values (#{posMac,jdbcType=VARCHAR}, #{hostName,jdbcType=VARCHAR}, #{ip,jdbcType=CHAR}, 
+      #{posName,jdbcType=VARCHAR}, #{posType,jdbcType=CHAR}, #{storeId,jdbcType=CHAR}, 
+      #{posStatus,jdbcType=CHAR}, #{posOrganizationCode,jdbcType=CHAR}, #{prePaidFlag,jdbcType=CHAR}, 
+      #{createts,jdbcType=TIMESTAMP}, #{modifiyts,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fanghong.pos.Model.Pos">
+    <selectKey keyProperty="posKey" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into POS_REGISTER
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="posMac != null">
+        POS_MAC,
+      </if>
+      <if test="hostName != null">
+        HOST_NAME,
+      </if>
+      <if test="ip != null">
+        IP,
+      </if>
+      <if test="posName != null">
+        POS_NAME,
+      </if>
+      <if test="posType != null">
+        POS_TYPE,
+      </if>
+      <if test="storeId != null">
+        STORE_ID,
+      </if>
+      <if test="posStatus != null">
+        POS_STATUS,
+      </if>
+      <if test="posOrganizationCode != null">
+        POS_ORGANIZATION_CODE,
+      </if>
+      <if test="prePaidFlag != null">
+        PRE_PAID_FLAG,
+      </if>
+      <if test="createts != null">
+        CREATETS,
+      </if>
+      <if test="modifiyts != null">
+        MODIFIYTS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="posMac != null">
+        #{posMac,jdbcType=VARCHAR},
+      </if>
+      <if test="hostName != null">
+        #{hostName,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=CHAR},
+      </if>
+      <if test="posName != null">
+        #{posName,jdbcType=VARCHAR},
+      </if>
+      <if test="posType != null">
+        #{posType,jdbcType=CHAR},
+      </if>
+      <if test="storeId != null">
+        #{storeId,jdbcType=CHAR},
+      </if>
+      <if test="posStatus != null">
+        #{posStatus,jdbcType=CHAR},
+      </if>
+      <if test="posOrganizationCode != null">
+        #{posOrganizationCode,jdbcType=CHAR},
+      </if>
+      <if test="prePaidFlag != null">
+        #{prePaidFlag,jdbcType=CHAR},
+      </if>
+      <if test="createts != null">
+        #{createts,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiyts != null">
+        #{modifiyts,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.fanghong.pos.Model.PosExample" resultType="java.lang.Long">
+    select count(*) from POS_REGISTER
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update POS_REGISTER
+    <set>
+      <if test="record.posKey != null">
+        POS_KEY = #{record.posKey,jdbcType=INTEGER},
+      </if>
+      <if test="record.posMac != null">
+        POS_MAC = #{record.posMac,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hostName != null">
+        HOST_NAME = #{record.hostName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ip != null">
+        IP = #{record.ip,jdbcType=CHAR},
+      </if>
+      <if test="record.posName != null">
+        POS_NAME = #{record.posName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.posType != null">
+        POS_TYPE = #{record.posType,jdbcType=CHAR},
+      </if>
+      <if test="record.storeId != null">
+        STORE_ID = #{record.storeId,jdbcType=CHAR},
+      </if>
+      <if test="record.posStatus != null">
+        POS_STATUS = #{record.posStatus,jdbcType=CHAR},
+      </if>
+      <if test="record.posOrganizationCode != null">
+        POS_ORGANIZATION_CODE = #{record.posOrganizationCode,jdbcType=CHAR},
+      </if>
+      <if test="record.prePaidFlag != null">
+        PRE_PAID_FLAG = #{record.prePaidFlag,jdbcType=CHAR},
+      </if>
+      <if test="record.createts != null">
+        CREATETS = #{record.createts,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifiyts != null">
+        MODIFIYTS = #{record.modifiyts,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update POS_REGISTER
+    set POS_KEY = #{record.posKey,jdbcType=INTEGER},
+      POS_MAC = #{record.posMac,jdbcType=VARCHAR},
+      HOST_NAME = #{record.hostName,jdbcType=VARCHAR},
+      IP = #{record.ip,jdbcType=CHAR},
+      POS_NAME = #{record.posName,jdbcType=VARCHAR},
+      POS_TYPE = #{record.posType,jdbcType=CHAR},
+      STORE_ID = #{record.storeId,jdbcType=CHAR},
+      POS_STATUS = #{record.posStatus,jdbcType=CHAR},
+      POS_ORGANIZATION_CODE = #{record.posOrganizationCode,jdbcType=CHAR},
+      PRE_PAID_FLAG = #{record.prePaidFlag,jdbcType=CHAR},
+      CREATETS = #{record.createts,jdbcType=TIMESTAMP},
+      MODIFIYTS = #{record.modifiyts,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

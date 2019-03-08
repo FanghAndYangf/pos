@@ -111,11 +111,9 @@
             </column>
             <column name="IP" type="char(20)" remarks="收银机IP"></column>
             <column name="POS_NAME" type="varchar(120)" remarks="收银机名称">
-                <constraints nullable="false"></constraints>
             </column>
             <column name="POS_TYPE" type="char(4)" remarks="收银机用途"></column>
             <column name="STORE_ID" type="char(4)" remarks="店铺ID">
-                <constraints nullable="false"></constraints>
             </column>
             <column name="POS_STATUS" type="ENUM('0','1')" remarks="收银机状态" defaultValue="0">
                 <constraints nullable="false"></constraints>
