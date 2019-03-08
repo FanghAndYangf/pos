@@ -3,7 +3,7 @@ package com.fanghong.pos.Controller;
 import com.fanghong.pos.Model.Cashier;
 import com.fanghong.pos.Result.JsonResult;
 import com.fanghong.pos.Result.ResponseBody.RegisterCashierBody;
-import com.fanghong.pos.ServiceImpl.CashiersServiceImpl;
+import com.fanghong.pos.ServiceImpl.CashierServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -24,7 +24,7 @@ import java.util.Date;
 public class CashierController {
 
     @Resource
-    private CashiersServiceImpl cashiersService;
+    private CashierServiceImpl cashiersService;
 
     private static final Logger logger= LoggerFactory.getLogger(CashierController.class);
 

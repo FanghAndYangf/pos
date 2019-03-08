@@ -89,8 +89,8 @@
             <column name="RESOURCE_FROM" type="char(30)" remarks="注册来源渠道">
                 <constraints nullable="false"></constraints>
             </column>
-            <column name="CREATETS" type="timestamp" remarks="创建日期"></column>
-            <column name="MODIFIYTS" type="timestamp" remarks="更新日期"></column>
+            <column name="CREATETS" type="datetime" remarks="创建日期"></column>
+            <column name="MODIFIYTS" type="datetime" remarks="更新日期"></column>
         </createTable>
     </changeSet>
     <changeSet author="fanghong" id="T000-20190308-001">
