@@ -93,4 +93,37 @@
             <column name="MODIFIYTS" type="timestamp" remarks="更新日期"></column>
         </createTable>
     </changeSet>
+    <changeSet author="fanghong" id="T000-20190308-001">
+        <dropTable cascadeConstraints="false"
+                   catalogName="poss"
+                   schemaName="poss"
+                   tableName="POS_CASH_REGISTER"/>
+    </changeSet>
+    <changeSet author="fanghong" id="T000-20190308-002">
+        <createTable tableName="POS_REGISTER" remarks="收银机注册表">
+            <column name="POS_KEY" type="int" remarks="收银机主键" autoIncrement="true" startWith="1">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_POS_CASHERS_KEY"></constraints>
+            </column>
+            <column name="POS_MAC" type="varchar(60)" remarks="收银机网卡MAC地址">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="HOST_NAME" type="varchar(40)" remarks="收银机电脑主机名">
+            </column>
+            <column name="IP" type="char(20)" remarks="收银机IP"></column>
+            <column name="POS_NAME" type="varchar(120)" remarks="收银机名称">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="POS_TYPE" type="char(4)" remarks="收银机用途"></column>
+            <column name="STORE_ID" type="char(4)" remarks="店铺ID">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="POS_STATUS" type="ENUM('0','1')" remarks="收银机状态" defaultValue="0">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="POS_ORGANIZATION_CODE" type="char(60)" remarks="连锁总部CODE"></column>
+            <column name="PRE_PAID_FLAG" type="char(1)" remarks="是否开启储值功能"></column>
+            <column name="CREATETS" type="datetime" remarks="创建日期"></column>
+            <column name="MODIFIYTS" type="datetime" remarks="更新日期"></column>
+        </createTable>
+    </changeSet>
 </databaseChangeLog>
