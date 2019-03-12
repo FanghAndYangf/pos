@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fanghong.pos.domain.UserDomain">
+    <resultMap id="UserResultMap" type="com.fanghong.pos.domain.UserDomain">
+        <id column="USER_KEY" property="userKey" jdbcType="INTEGER"></id>
+        <result column="USER_NAME" property="" jdbcType="VARCHAR"></result>
+        <result column="NICK_NAME" property="" jdbcType="VARCHAR"></result>
+        <result column="LOGIN_ID" property="" jdbcType="CHAR"></result>
+        <result column="LOGIN_PASSWORD" property="" jdbcType="CHAR"></result>
+        <result column="USER_MOBILE" property="" jdbcType="CHAR"></result>
+        <result column="DEPT_ID" property="" jdbcType="CHAR"></result>
+        <result column="USER_STATUS" property="" jdbcType="CHAR"></result>
+        <result column="USER_TYPE" property="" jdbcType="CHAR"></result>
+        <result column="RESOURCE_FROM" property="" jdbcType="CHAR"></result>
+        <result column="CREATETS" property="" jdbcType="TIMESTAMP"></result>
+        <result column="MODIFIYTS" property="" jdbcType="TIMESTAMP"></result>
+    </resultMap>
+    <parameterMap id="UserParameterMap" type="com.fanghong.pos.domain.UserDomain">
+
+    </parameterMap>
+    <insert id="insert" parameterType="UserParameterMap">
+
+    </insert>
+</mapper>
