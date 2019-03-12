@@ -1,4 +1,4 @@
-package com.fanghong.pos;
+package com.fanghong.pos.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
