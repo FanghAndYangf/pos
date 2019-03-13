@@ -1,7 +1,7 @@
-package com.fanghong.pos.Dao;
+package com.fanghong.pos.dao;
 
-import com.fanghong.pos.Model.Pos;
-import com.fanghong.pos.Model.PosExample;
+import com.fanghong.pos.model.Pos;
+import com.fanghong.pos.model.PosExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 

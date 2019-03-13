@@ -1,9 +1,9 @@
-package com.fanghong.pos.Controller;
+package com.fanghong.pos.controller;
 
-import com.fanghong.pos.Model.Cashier;
-import com.fanghong.pos.Result.JsonResult;
-import com.fanghong.pos.Result.ResponseBody.RegisterCashierBody;
-import com.fanghong.pos.ServiceImpl.CashierServiceImpl;
+import com.fanghong.pos.model.Cashier;
+import com.fanghong.pos.result.JsonResult;
+import com.fanghong.pos.result.ResponseBody.RegisterCashierBody;
+import com.fanghong.pos.serviceImpl.CashierServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;

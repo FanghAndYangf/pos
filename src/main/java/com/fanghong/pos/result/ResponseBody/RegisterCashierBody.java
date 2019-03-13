@@ -1,6 +1,5 @@
-package com.fanghong.pos.Result.ResponseBody;
+package com.fanghong.pos.result.ResponseBody;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 

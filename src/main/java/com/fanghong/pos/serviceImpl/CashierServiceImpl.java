@@ -1,8 +1,8 @@
-package com.fanghong.pos.ServiceImpl;
+package com.fanghong.pos.serviceImpl;
 
-import com.fanghong.pos.Dao.CashierMapper;
-import com.fanghong.pos.Model.Cashier;
-import com.fanghong.pos.Service.CashierService;
+import com.fanghong.pos.dao.CashierMapper;
+import com.fanghong.pos.model.Cashier;
+import com.fanghong.pos.service.CashierService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 

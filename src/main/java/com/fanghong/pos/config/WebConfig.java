@@ -1,4 +1,4 @@
-package com.fanghong.pos.BeanConfig;
+package com.fanghong.pos.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.ControllerAdvice;

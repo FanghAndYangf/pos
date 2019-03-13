@@ -1,8 +1,8 @@
-package com.fanghong.pos.ServiceImpl;
+package com.fanghong.pos.serviceImpl;
 
-import com.fanghong.pos.Dao.PosMapper;
-import com.fanghong.pos.Model.Pos;
-import com.fanghong.pos.Service.PosService;
+import com.fanghong.pos.dao.PosMapper;
+import com.fanghong.pos.model.Pos;
+import com.fanghong.pos.service.PosService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

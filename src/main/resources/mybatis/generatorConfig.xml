@@ -23,7 +23,7 @@
                 <property name="forceBigDecimals" value="false" />
         </javaTypeResolver>
         <!--生成Model类存放位置 -->
-        <javaModelGenerator targetPackage="com.fanghong.pos.Model"
+        <javaModelGenerator targetPackage="com.fanghong.pos.model"
                             targetProject="src/main/java">
             <!-- 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false -->
             <property name="enableSubPackages" value="false" />
@@ -43,7 +43,7 @@
 
         <!--生成Dao类存放位置 -->
         <javaClientGenerator type="XMLMAPPER"
-                             targetPackage="com.fanghong.pos.Dao" targetProject="src/main/java">
+                             targetPackage="com.fanghong.pos.dao" targetProject="src/main/java">
             <property name="enableSubPackages" value="false" />
         </javaClientGenerator>
 

@@ -1,4 +1,4 @@
-package com.fanghong.pos.BeanConfig;
+package com.fanghong.pos.config;
 
 import org.mybatis.generator.api.MyBatisGenerator;
 import org.mybatis.generator.config.Configuration;

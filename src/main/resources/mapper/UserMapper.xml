@@ -1,24 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.fanghong.pos.domain.UserDomain">
+<mapper namespace="com.fanghong.pos.dao.UserMapper">
     <resultMap id="UserResultMap" type="com.fanghong.pos.domain.UserDomain">
         <id column="USER_KEY" property="userKey" jdbcType="INTEGER"></id>
-        <result column="USER_NAME" property="" jdbcType="VARCHAR"></result>
-        <result column="NICK_NAME" property="" jdbcType="VARCHAR"></result>
-        <result column="LOGIN_ID" property="" jdbcType="CHAR"></result>
-        <result column="LOGIN_PASSWORD" property="" jdbcType="CHAR"></result>
-        <result column="USER_MOBILE" property="" jdbcType="CHAR"></result>
-        <result column="DEPT_ID" property="" jdbcType="CHAR"></result>
-        <result column="USER_STATUS" property="" jdbcType="CHAR"></result>
-        <result column="USER_TYPE" property="" jdbcType="CHAR"></result>
-        <result column="RESOURCE_FROM" property="" jdbcType="CHAR"></result>
-        <result column="CREATETS" property="" jdbcType="TIMESTAMP"></result>
-        <result column="MODIFIYTS" property="" jdbcType="TIMESTAMP"></result>
+        <result column="USER_NAME" property="userName" jdbcType="VARCHAR"></result>
+        <result column="NICK_NAME" property="nickName" jdbcType="VARCHAR"></result>
+        <result column="LOGIN_ID" property="loginId" jdbcType="CHAR"></result>
+        <result column="LOGIN_PASSWORD" property="loginPassword" jdbcType="CHAR"></result>
+        <result column="USER_MOBILE" property="userMobile" jdbcType="CHAR"></result>
+        <result column="DEPT_ID" property="deptId" jdbcType="CHAR"></result>
+        <result column="USER_STATUS" property="userStatus" jdbcType="CHAR"></result>
+        <result column="USER_TYPE" property="userType" jdbcType="CHAR"></result>
+        <result column="RESOURCE_FROM" property="resourceFrom" jdbcType="CHAR"></result>
+        <result column="CREATETS" property="createts" jdbcType="TIMESTAMP"></result>
+        <result column="MODIFIYTS" property="modifyts" jdbcType="TIMESTAMP"></result>
     </resultMap>
     <parameterMap id="UserParameterMap" type="com.fanghong.pos.domain.UserDomain">
-
+        <parameter property="userKey" resultMap="UserResultMap"/>
+        <parameter property="userName" resultMap="UserResultMap"/>
+        <parameter property="nickName" resultMap="UserResultMap"/>
+        <parameter property="loginId" resultMap="UserResultMap"/>
+        <parameter property="loginPassword" resultMap="UserResultMap"/>
+        <parameter property="userMobile" resultMap="UserResultMap"/>
+        <parameter property="deptId" resultMap="UserResultMap"/>
+        <parameter property="userStatus" resultMap="UserResultMap"/>
+        <parameter property="userType" resultMap="UserResultMap"/>
+        <parameter property="resourceFrom" resultMap="UserResultMap"/>
+        <parameter property="createts" resultMap="UserResultMap"/>
+        <parameter property="modifyts" resultMap="UserResultMap"/>
     </parameterMap>
-    <insert id="insert" parameterType="UserParameterMap">
-
+    <insert id="insert" parameterMap="UserParameterMap">
+        <selectKey keyProperty="userKey" order="AFTER" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into SYS_USER(USER_NAME,NICK_NAME,LOGIN_ID,LOGIN_PASSWORD,USER_MOBILE,DEPT_ID,USER_STATUS,USER_TYPE,RESOURCE_FROM,CREATETS,MODIFIYTS)
+        values
+        (#{userName,jdbcType=VARCHAR},#{nickName,jdbcType=VARCHAR},#{loginId,jdbcType=CHAR},#{loginPassword,jdbcType=CHAR},
+        #{userMobile,jdbcType=CHAR},#{deptId,jdbcType=CHAR},#{userStatus,jdbcType=CHAR},#{userType,jdbcType=CHAR},
+        #{resourceFrom,jdbcType=CHAR},#{createts,jdbcType=TIMESTAMP},#{modifyts,jdbcType=TIMESTAMP})
     </insert>
 </mapper>

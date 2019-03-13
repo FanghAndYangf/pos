@@ -1,6 +1,6 @@
-package com.fanghong.pos.Service;
+package com.fanghong.pos.service;
 
-import com.fanghong.pos.Model.Cashier;
+import com.fanghong.pos.model.Cashier;
 import com.github.pagehelper.PageInfo;
 
 public interface CashierService {

@@ -1,4 +1,4 @@
-package com.fanghong.pos.Result;
+package com.fanghong.pos.result;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

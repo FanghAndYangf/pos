@@ -1,4 +1,4 @@
-package com.fanghong.pos.Model;
+package com.fanghong.pos.model;
 
 import java.util.ArrayList;
 import java.util.Date;

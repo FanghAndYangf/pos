@@ -53,7 +53,7 @@ public class RoleDomain {
     /**
      * 角色可进行操作列表
      */
-    private List<JsonPermissions.SimplePermission> permissions;
+    //private List<JsonPermissions.SimplePermission> permissions;
 
     /**
      * 角色创建者

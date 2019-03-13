@@ -1,8 +1,7 @@
 package com.fanghong.pos.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -12,21 +11,22 @@ import java.util.*;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class UserDomain implements UserDetails {
 
     public static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
 
-    private String userKey;
+    private Integer userKey;
 
     /**
      * 创建日期
      */
-    private Long createts;
+    private Date createts;
 
     /**
      * 修改日期
      */
-    private Long modifyts;
+    private Date modifyts;
 
     /**
      * 用户权限名
@@ -38,6 +38,7 @@ public class UserDomain implements UserDetails {
      */
     private String nickName;
 
+    private String deptId;
     /**
      * 用户登录id
      */

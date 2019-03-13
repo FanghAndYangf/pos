@@ -1,8 +1,6 @@
-package com.fanghong.pos.BeanConfig;
+package com.fanghong.pos.config;
 
 import liquibase.integration.spring.SpringLiquibase;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.DefaultResourceLoader;
 
 import javax.sql.DataSource;
