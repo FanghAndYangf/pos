@@ -59,7 +59,8 @@ public class SystemInitializer {
                             StandardCharsets.UTF_8),
                     userTokenType);
             for(UserDomain user : userDomains){
-                userMapper.insert(user);
+                int isExist = userMapper.countByUserName(user.getUsername());
+                if(isExist == 0 ) userMapper.insert(user);
             }
         }finally {
             if(null != userInputStream) userInputStream.close();

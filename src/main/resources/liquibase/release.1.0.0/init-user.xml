@@ -8,9 +8,6 @@
             <column name="USER_KEY" type="int" remarks="用户主键" autoIncrement="true" startWith="1">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="PK_AS_USER_KEY"></constraints>
             </column>
-            <column name="USER_NAME" type="varchar(90)" remarks="用户权限名称">
-                <constraints nullable="false"></constraints>
-            </column>
             <column name="NICK_NAME" type="varchar(90)" remarks="用户显示名称">
                 <constraints nullable="false"></constraints>
             </column>

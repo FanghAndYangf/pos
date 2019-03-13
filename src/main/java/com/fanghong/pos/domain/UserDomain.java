@@ -11,68 +11,28 @@ import java.util.*;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class UserDomain implements UserDetails {
 
     public static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
 
-    private Integer userKey;
-
-    /**
-     * 创建日期
-     */
-    private Date createts;
-
-    /**
-     * 修改日期
-     */
-    private Date modifyts;
-
-    /**
-     * 用户权限名
-     */
-    private String userName;
-
-    /**
-     * 用户真实姓名
-     */
-    private String nickName;
-
-    private String deptId;
-    /**
-     * 用户登录id
-     */
-    private String loginId;
-    /**
-     * 用户登录密码，用户的密码不应该暴露给客户端
-     */
+    private Integer userKey;        //用户主键
+    private Date createts;      //创建日期
+    private Date modifyts;      //修改日期
+    private String nickName;        //用户真实姓名
+    private String username;        //用户登陆id
     @JsonIgnore
-    private String loginPassword;
-    private String userMobile;
-    private String resourceFrom;
-    private String userStatus;
-    /**
-     * 用户类型
-     */
-    private String userType;
-
-    /**
-     * 该用户关联的企业/区块id
-     */
-    private Map<String,Object> associatedResources = new HashMap<>();
-
-    /**
-     * 用户关注的企业列表
-     */
-    private List<String> favourite = new ArrayList<>();
-
-    /**
-     * 用户在系统中的角色列表，将根据角色对用户操作权限进行限制
-     */
-    private List<String> roles = new ArrayList<>();
+    private String password;        //用户登陆密码
+    private String deptId;      //用户所在部门
+    private String userMobile;      //用户手机号码
+    private String resourceFrom;        //用户来源
+    private String userStatus;      //用户状态
+    private String userType;        //用户类型
+    private Map<String,Object> associatedResources = new HashMap<>();       //该用户关联的企业/区块id
+    private List<String> favourite = new ArrayList<>();         //用户关注的企业列表
+    private List<String> roles = new ArrayList<>();     //用户在系统中的角色列表，将根据角色对用户操作权限进行限制
 
     public void setPassword(String password) {
-        this.loginPassword = PASSWORD_ENCODER.encode(password);
+        this.password = PASSWORD_ENCODER.encode(password);
     }
 
     @Override
@@ -81,32 +41,22 @@ public class UserDomain implements UserDetails {
     }
 
     @Override
-    public String getPassword() {
-        return this.loginPassword;
-    }
-
-    @Override
-    public String getUsername() {
-        return this.userName;
-    }
-
-    @Override
     public boolean isAccountNonExpired() {
-        return true;
+        return false;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return false;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return true;
+        return false;
     }
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return false;
     }
 }

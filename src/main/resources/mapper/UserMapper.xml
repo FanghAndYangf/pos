@@ -3,10 +3,9 @@
 <mapper namespace="com.fanghong.pos.dao.UserMapper">
     <resultMap id="UserResultMap" type="com.fanghong.pos.domain.UserDomain">
         <id column="USER_KEY" property="userKey" jdbcType="INTEGER"></id>
-        <result column="USER_NAME" property="userName" jdbcType="VARCHAR"></result>
         <result column="NICK_NAME" property="nickName" jdbcType="VARCHAR"></result>
-        <result column="LOGIN_ID" property="loginId" jdbcType="CHAR"></result>
-        <result column="LOGIN_PASSWORD" property="loginPassword" jdbcType="CHAR"></result>
+        <result column="LOGIN_ID" property="username" jdbcType="CHAR"></result>
+        <result column="LOGIN_PASSWORD" property="password" jdbcType="CHAR"></result>
         <result column="USER_MOBILE" property="userMobile" jdbcType="CHAR"></result>
         <result column="DEPT_ID" property="deptId" jdbcType="CHAR"></result>
         <result column="USER_STATUS" property="userStatus" jdbcType="CHAR"></result>
@@ -17,10 +16,9 @@
     </resultMap>
     <parameterMap id="UserParameterMap" type="com.fanghong.pos.domain.UserDomain">
         <parameter property="userKey" resultMap="UserResultMap"/>
-        <parameter property="userName" resultMap="UserResultMap"/>
         <parameter property="nickName" resultMap="UserResultMap"/>
-        <parameter property="loginId" resultMap="UserResultMap"/>
-        <parameter property="loginPassword" resultMap="UserResultMap"/>
+        <parameter property="username" resultMap="UserResultMap"/>
+        <parameter property="password" resultMap="UserResultMap"/>
         <parameter property="userMobile" resultMap="UserResultMap"/>
         <parameter property="deptId" resultMap="UserResultMap"/>
         <parameter property="userStatus" resultMap="UserResultMap"/>
@@ -33,10 +31,23 @@
         <selectKey keyProperty="userKey" order="AFTER" resultType="java.lang.Integer">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        insert into SYS_USER(USER_NAME,NICK_NAME,LOGIN_ID,LOGIN_PASSWORD,USER_MOBILE,DEPT_ID,USER_STATUS,USER_TYPE,RESOURCE_FROM,CREATETS,MODIFIYTS)
+        insert into SYS_USER(NICK_NAME,LOGIN_ID,LOGIN_PASSWORD,USER_MOBILE,DEPT_ID,USER_STATUS,USER_TYPE,RESOURCE_FROM,CREATETS,MODIFIYTS)
         values
-        (#{userName,jdbcType=VARCHAR},#{nickName,jdbcType=VARCHAR},#{loginId,jdbcType=CHAR},#{loginPassword,jdbcType=CHAR},
+        (#{nickName,jdbcType=VARCHAR},#{username,jdbcType=CHAR},#{password,jdbcType=CHAR},
         #{userMobile,jdbcType=CHAR},#{deptId,jdbcType=CHAR},#{userStatus,jdbcType=CHAR},#{userType,jdbcType=CHAR},
         #{resourceFrom,jdbcType=CHAR},#{createts,jdbcType=TIMESTAMP},#{modifyts,jdbcType=TIMESTAMP})
     </insert>
+    <select id="countByUserName" parameterType="java.lang.String" resultType="java.lang.Integer">
+        select count(1) from SYS_USER
+        <where>
+            <choose>
+                <when test="_parameter != null">
+                    LOGIN_ID = #{_parameter}
+                </when>
+                <otherwise>
+                    1 = 2
+                </otherwise>
+            </choose>
+        </where>
+    </select>
 </mapper>
