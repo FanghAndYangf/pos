@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fanghong.pos.dao.RoleMapper">
+    <resultMap id="RoleResultMap" type="com.fanghong.pos.domain.RoleDomain">
+        <result column="ROLE_KEY" property="roleKey" jdbcType="INTEGER"></result>
+        <result column="IS_REMOVED" property="isRemoved" jdbcType="BOOLEAN"></result>
+        <result column="ROLE_NAME" property="name" jdbcType="CHAR"></result>
+        <result column="NIKE_NAME" property="nickname" jdbcType="VARCHAR"></result>
+        <result column="ROLE_DESCRIPTION" property="description" jdbcType="VARCHAR"></result>
+        <result column="ROLE_BUILD_IN" property="builtIn" jdbcType="BOOLEAN"></result>
+        <result column="ROLE_STATUS" property="banned" jdbcType="BOOLEAN"></result>
+        <result column="CREATETS" property="createts" jdbcType="TIMESTAMP"></result>
+        <result column="MODIFIYTS" property="modifyts" jdbcType="TIMESTAMP"></result>
+        <result column="CREATE_USERID" property="createUserId" jdbcType="CHAR"></result>
+        <result column="MODIFY_USERID" property="modifyUserId" jdbcType="CHAR"></result>
+    </resultMap>
+
+    <parameterMap id="RoleParameterMap" type="com.fanghong.pos.domain.UserDomain">
+        <parameter property="roleKey" resultMap="RoleResultMap"></parameter>
+        <parameter property="isRemoved" resultMap="RoleResultMap"></parameter>
+        <parameter property="name" resultMap="RoleResultMap"></parameter>
+        <parameter property="nickname" resultMap="RoleResultMap"></parameter>
+        <parameter property="description" resultMap="RoleResultMap"></parameter>
+        <parameter property="builtIn" resultMap="RoleResultMap"></parameter>
+        <parameter property="banned" resultMap="RoleResultMap"></parameter>
+        <parameter property="createts" resultMap="RoleResultMap"></parameter>
+        <parameter property="modifyts" resultMap="RoleResultMap"></parameter>
+        <parameter property="createUserId" resultMap="RoleResultMap"></parameter>
+        <parameter property="modifyUserId" resultMap="RoleResultMap"></parameter>
+    </parameterMap>
+
+    <insert id="insert" parameterMap="RoleParameterMap" >
+        <selectKey keyProperty="roleKey" order="AFTER" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into SYS_ROLE(IS_REMOVED,ROLE_NAME,NIKE_NAME,ROLE_DESCRIPTION,ROLE_BUILD_IN,ROLE_STATUS,CREATE_USERID,MODIFY_USERID,CREATETS,MODIFIYTS)
+        values
+    </insert>
+</mapper>
