@@ -52,7 +52,8 @@
                 <constraints nullable="false"></constraints>
             </column>
             <column name="ROLE_STATUS" type="char(1)" remarks="角色状态"></column>
-            <column name="CREATETOR" type="char(20)" remarks="创建者key"></column>
+            <column name="CREATE_USERID" type="char(20)" remarks="创建者key"></column>
+            <column name="MODIFY_USERID" type="char(20)" remarks="更新者key"></column>
             <column name="CREATETS" type="timestamp(0)" remarks="创建日期"></column>
             <column name="MODIFIYTS" type="timestamp(0)" remarks="更新日期"></column>
         </createTable>
