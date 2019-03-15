@@ -24,7 +24,7 @@ import java.util.Date;
 public class CashierController {
 
     @Resource
-    private CashierServiceImpl cashiersService;
+    private CashierServiceImpl cashierService;
 
     private static final Logger logger= LoggerFactory.getLogger(CashierController.class);
 
@@ -41,7 +41,7 @@ public class CashierController {
         cashier.setCreatets(new Date());     //获取当前时间
         cashier.setCashierStatus("1");       //默认启用状态
         cashier.setRegistType("0");          //个体收银
-        int loginId = cashiersService.addCashier(cashier);
+        int loginId = cashierService.addCashier(cashier);
         RegisterCashierBody registerCashierBody = new RegisterCashierBody();
         registerCashierBody.setLoginId(String.valueOf(cashier.getCashierKey()));
         r.setStatus("success");

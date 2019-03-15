@@ -1,5 +1,6 @@
 package com.fanghong.pos.config;
 
+import com.fanghong.pos.adapter.SpringfoxJsonToGsonAdapter;
 import com.fanghong.pos.dao.RoleMapper;
 import com.fanghong.pos.dao.UserAndRoleMapper;
 import com.fanghong.pos.dao.UserMapper;
@@ -12,6 +13,7 @@ import com.google.gson.reflect.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import springfox.documentation.spring.web.json.Json;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
@@ -53,6 +55,7 @@ public class SystemInitializer {
                     .setDateFormat("yyyy-MM-dd HH:mm:ss")
                     .setPrettyPrinting()
                     .disableHtmlEscaping()
+                    //.registerTypeAdapter(Json.class, new SpringfoxJsonToGsonAdapter())
                     .create();
             //导入初始的系统超级管理员角色
             Type roleTokenType = new TypeToken<ArrayList<RoleDomain>>(){}.getType();
@@ -72,14 +75,16 @@ public class SystemInitializer {
                     userTokenType);
             for(UserDomain user : userDomains){
                 int isExist = userMapper.countByUserName(user.getUsername());
-                if(isExist == 0) userMapper.insert(user);
-                List<String> roles = user.getRoles();
-                for(String roleName : roles){
-                    RoleDomain role  = roleMapper.selectRloeByMap(roleName);
-                    UserAndRoleDomain userAndRoleDomain = new UserAndRoleDomain();
-                    userAndRoleDomain.setRoleKey(role.getRoleKey());
-                    userAndRoleDomain.setUserKey(user.getUserKey());
-                    userAndRoleMapper.insert(userAndRoleDomain);
+                if(isExist == 0){
+                    userMapper.insert(user);
+                    List<String> roles = user.getRoles();
+                    for(String roleName : roles){
+                        RoleDomain role  = roleMapper.selectRloeByMap(roleName);
+                        UserAndRoleDomain userAndRoleDomain = new UserAndRoleDomain();
+                        userAndRoleDomain.setRoleKey(role.getRoleKey());
+                        userAndRoleDomain.setUserKey(user.getUserKey());
+                        userAndRoleMapper.insert(userAndRoleDomain);
+                    }
                 }
             }
         }finally {

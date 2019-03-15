@@ -13,7 +13,7 @@ import java.util.*;
 @NoArgsConstructor
 public class UserDomain implements UserDetails {
 
-    public static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
+    //public static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
 
     private Integer userKey;        //用户主键
     private Date createts;      //创建日期
@@ -34,10 +34,6 @@ public class UserDomain implements UserDetails {
     private List<String> roles = new ArrayList<>();     //用户初始化用户权限
     private List<RoleDomain> roleDomainList;
 
-    public void setPassword(String password) {
-        this.password = PASSWORD_ENCODER.encode(password);
-    }
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
@@ -45,21 +41,21 @@ public class UserDomain implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 }
