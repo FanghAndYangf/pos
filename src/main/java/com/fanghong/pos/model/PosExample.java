@@ -855,63 +855,63 @@ public class PosExample {
             return (Criteria) this;
         }
 
-        public Criteria andModifiytsIsNull() {
-            addCriterion("MODIFIYTS is null");
+        public Criteria andModifytsIsNull() {
+            addCriterion("MODIFYTS is null");
             return (Criteria) this;
         }
 
-        public Criteria andModifiytsIsNotNull() {
-            addCriterion("MODIFIYTS is not null");
+        public Criteria andModifytsIsNotNull() {
+            addCriterion("MODIFYTS is not null");
             return (Criteria) this;
         }
 
-        public Criteria andModifiytsEqualTo(Date value) {
-            addCriterion("MODIFIYTS =", value, "modifiyts");
+        public Criteria andModifytsEqualTo(Date value) {
+            addCriterion("MODIFYTS =", value, "modifyts");
             return (Criteria) this;
         }
 
-        public Criteria andModifiytsNotEqualTo(Date value) {
-            addCriterion("MODIFIYTS <>", value, "modifiyts");
+        public Criteria andModifytsNotEqualTo(Date value) {
+            addCriterion("MODIFYTS <>", value, "modifyts");
             return (Criteria) this;
         }
 
-        public Criteria andModifiytsGreaterThan(Date value) {
-            addCriterion("MODIFIYTS >", value, "modifiyts");
+        public Criteria andModifytsGreaterThan(Date value) {
+            addCriterion("MODIFYTS >", value, "modifyts");
             return (Criteria) this;
         }
 
-        public Criteria andModifiytsGreaterThanOrEqualTo(Date value) {
-            addCriterion("MODIFIYTS >=", value, "modifiyts");
+        public Criteria andModifytsGreaterThanOrEqualTo(Date value) {
+            addCriterion("MODIFYTS >=", value, "modifyts");
             return (Criteria) this;
         }
 
-        public Criteria andModifiytsLessThan(Date value) {
-            addCriterion("MODIFIYTS <", value, "modifiyts");
+        public Criteria andModifytsLessThan(Date value) {
+            addCriterion("MODIFYTS <", value, "modifyts");
             return (Criteria) this;
         }
 
-        public Criteria andModifiytsLessThanOrEqualTo(Date value) {
-            addCriterion("MODIFIYTS <=", value, "modifiyts");
+        public Criteria andModifytsLessThanOrEqualTo(Date value) {
+            addCriterion("MODIFYTS <=", value, "modifyts");
             return (Criteria) this;
         }
 
-        public Criteria andModifiytsIn(List<Date> values) {
-            addCriterion("MODIFIYTS in", values, "modifiyts");
+        public Criteria andModifytsIn(List<Date> values) {
+            addCriterion("MODIFYTS in", values, "modifyts");
             return (Criteria) this;
         }
 
-        public Criteria andModifiytsNotIn(List<Date> values) {
-            addCriterion("MODIFIYTS not in", values, "modifiyts");
+        public Criteria andModifytsNotIn(List<Date> values) {
+            addCriterion("MODIFYTS not in", values, "modifyts");
             return (Criteria) this;
         }
 
-        public Criteria andModifiytsBetween(Date value1, Date value2) {
-            addCriterion("MODIFIYTS between", value1, value2, "modifiyts");
+        public Criteria andModifytsBetween(Date value1, Date value2) {
+            addCriterion("MODIFYTS between", value1, value2, "modifyts");
             return (Criteria) this;
         }
 
-        public Criteria andModifiytsNotBetween(Date value1, Date value2) {
-            addCriterion("MODIFIYTS not between", value1, value2, "modifiyts");
+        public Criteria andModifytsNotBetween(Date value1, Date value2) {
+            addCriterion("MODIFYTS not between", value1, value2, "modifyts");
             return (Criteria) this;
         }
     }

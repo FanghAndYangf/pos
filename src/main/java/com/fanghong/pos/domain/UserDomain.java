@@ -27,9 +27,12 @@ public class UserDomain implements UserDetails {
     private String resourceFrom;        //用户来源
     private String userStatus;      //用户状态
     private String userType;        //用户类型
+    private String createUserId;        //用户创建者
+    private String modifyUserId;        //用户更新者
     private Map<String,Object> associatedResources = new HashMap<>();       //该用户关联的企业/区块id
     private List<String> favourite = new ArrayList<>();         //用户关注的企业列表
-    private List<String> roles = new ArrayList<>();     //用户在系统中的角色列表，将根据角色对用户操作权限进行限制
+    private List<String> roles = new ArrayList<>();     //用户初始化用户权限
+    private List<RoleDomain> roleDomainList;
 
     public void setPassword(String password) {
         this.password = PASSWORD_ENCODER.encode(password);

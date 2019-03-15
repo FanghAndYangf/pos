@@ -2,10 +2,12 @@ package com.fanghong.pos.domain;
 
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
 @Data
+@NoArgsConstructor
 public class RoleDomain {
 
     private Integer roleKey;     //主键

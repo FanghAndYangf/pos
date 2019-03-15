@@ -29,14 +29,14 @@
                 <constraints nullable="false"></constraints>
             </column>
             <column name="CREATETS" type="timestamp(0)" remarks="创建日期"></column>
-            <column name="MODIFIYTS" type="timestamp(0)" remarks="更新日期"></column>
+            <column name="MODIFYTS" type="timestamp(0)" remarks="更新日期"></column>
         </createTable>
 
         <createTable tableName="SYS_ROLE" remarks="系统角色表">
             <column name="ROLE_KEY" type="int" remarks="角色主键" autoIncrement="true" startWith="1">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="PK_SYS_ROLE_KEY"></constraints>
             </column>
-            <column name="IS_REMOVED" type="char(1)" remarks="是否被移除" defaultValue="0">
+            <column name="IS_REMOVED" type="bit" remarks="是否被移除" defaultValueBoolean="false">
                 <constraints nullable="false"></constraints>
             </column>
             <column name="ROLE_NAME" type="varchar(90)" remarks="角色名,用于校验">
@@ -48,14 +48,13 @@
             <column name="ROLE_DESCRIPTION" type="char(1)" remarks="角色描述">
                 <constraints nullable="false"></constraints>
             </column>
-            <column name="ROLE_BUILD_IN" type="char(1)" remarks="是否内置">
-                <constraints nullable="false"></constraints>
+            <column name="ROLE_BUILD_IN" type="bit" remarks="是否内置" defaultValueBoolean="false">
             </column>
-            <column name="ROLE_STATUS" type="char(1)" remarks="角色状态"></column>
-            <column name="CREATE_USERID" type="char(60)" remarks="创建者key"></column>
-            <column name="MODIFY_USERID" type="char(60)" remarks="更新者key"></column>
+            <column name="ROLE_STATUS" type="bit" remarks="角色状态" defaultValueBoolean="false"></column>
+            <column name="CREATE_USERID" type="char(60)" remarks="创建者"></column>
+            <column name="MODIFY_USERID" type="char(60)" remarks="更新者"></column>
             <column name="CREATETS" type="timestamp(0)" remarks="创建日期"></column>
-            <column name="MODIFIYTS" type="timestamp(0)" remarks="更新日期"></column>
+            <column name="MODIFYTS" type="timestamp(0)" remarks="更新日期"></column>
         </createTable>
 
         <createTable tableName="SYS_ROLE_USER" remarks="用户角色关系表">
@@ -69,7 +68,17 @@
                 <constraints nullable="false"></constraints>
             </column>
             <column name="CREATETS" type="timestamp(0)" remarks="创建日期"></column>
-            <column name="MODIFIYTS" type="timestamp(0)" remarks="更新日期"></column>
+            <column name="MODIFYTS" type="timestamp(0)" remarks="更新日期"></column>
         </createTable>
+    </changeSet>
+    <changeSet author="fanghong" id="T000-20190315-001">
+        <modifyDataType tableName="SYS_ROLE" columnName="ROLE_DESCRIPTION" newDataType="varchar(120)"></modifyDataType>
+        <addNotNullConstraint tableName="SYS_ROLE" columnName="CREATETS" columnDataType="timestamp(0)"></addNotNullConstraint>
+        <addNotNullConstraint tableName="SYS_USER" columnName="CREATETS" columnDataType="timestamp(0)"></addNotNullConstraint>
+        <addColumn tableName="SYS_USER">
+            <column afterColumn="MODIFYTS" name="CREATE_USERID" type="char(60)" remarks="创建者"></column>
+            <column afterColumn="MODIFYTS" name="MODIFY_USERID" type="char(60)" remarks="更新者"></column>
+        </addColumn>
+        <addNotNullConstraint tableName="SYS_ROLE_USER" columnName="CREATETS" columnDataType="timestamp(0)"></addNotNullConstraint>
     </changeSet>
 </databaseChangeLog>

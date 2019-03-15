@@ -1,7 +1,10 @@
 package com.fanghong.pos.config;
 
+import com.fanghong.pos.dao.RoleMapper;
+import com.fanghong.pos.dao.UserAndRoleMapper;
 import com.fanghong.pos.dao.UserMapper;
 import com.fanghong.pos.domain.RoleDomain;
+import com.fanghong.pos.domain.UserAndRoleDomain;
 import com.fanghong.pos.domain.UserDomain;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -17,6 +20,7 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 系统初始化配置类,主要用于加载内置数据到目标数据库上
@@ -29,6 +33,10 @@ public class SystemInitializer {
 
     @Resource
     private UserMapper userMapper;
+    @Resource
+    private RoleMapper roleMapper;
+    @Resource
+    private UserAndRoleMapper userAndRoleMapper;
 
     @PostConstruct
     public boolean initialize() throws Exception {
@@ -47,11 +55,15 @@ public class SystemInitializer {
                     .disableHtmlEscaping()
                     .create();
             //导入初始的系统超级管理员角色
-            /*Type roleTokenType = new TypeToken<ArrayList<RoleDomain>>(){}.getType();
+            Type roleTokenType = new TypeToken<ArrayList<RoleDomain>>(){}.getType();
 
             ArrayList<RoleDomain> roleDomains = gson.fromJson(new InputStreamReader(roleInputStream,
                             StandardCharsets.UTF_8),
-                            roleTokenType);*/
+                            roleTokenType);
+            for(RoleDomain role : roleDomains){
+                int isExist = roleMapper.countByName(role.getName());
+                if(isExist == 0) roleMapper.insert(role);
+            }
 
             //导入初始的系统超级管理员角色
             Type userTokenType = new TypeToken<ArrayList<UserDomain>>(){}.getType();
@@ -60,7 +72,15 @@ public class SystemInitializer {
                     userTokenType);
             for(UserDomain user : userDomains){
                 int isExist = userMapper.countByUserName(user.getUsername());
-                if(isExist == 0 ) userMapper.insert(user);
+                if(isExist == 0) userMapper.insert(user);
+                List<String> roles = user.getRoles();
+                for(String roleName : roles){
+                    RoleDomain role  = roleMapper.selectRloeByMap(roleName);
+                    UserAndRoleDomain userAndRoleDomain = new UserAndRoleDomain();
+                    userAndRoleDomain.setRoleKey(role.getRoleKey());
+                    userAndRoleDomain.setUserKey(user.getUserKey());
+                    userAndRoleMapper.insert(userAndRoleDomain);
+                }
             }
         }finally {
             if(null != userInputStream) userInputStream.close();

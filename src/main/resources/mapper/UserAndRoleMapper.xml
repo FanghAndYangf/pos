@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fanghong.pos.dao.UserAndRoleMapper">
+    <resultMap id="UserAndRoleResultMap" type="com.fanghong.pos.domain.UserAndRoleDomain">
+        <result column="ROLE_USER_KEY" property="roleUserKey" jdbcType="INTEGER"></result>
+        <result column="USER_KEY" property="userKey" jdbcType="INTEGER"></result>
+        <result column="ROLE_KEY" property="roleKey" jdbcType="INTEGER"></result>
+        <result column="CREATETS" property="createts" jdbcType="TIMESTAMP"></result>
+        <result column="MODIFYTS" property="modifyts" jdbcType="TIMESTAMP"></result>
+    </resultMap>
+
+    <parameterMap id="UserAndRoleParameterMap" type="com.fanghong.pos.domain.UserAndRoleDomain">
+        <parameter property="roleUserKey" resultMap="UserAndRoleResultMap"></parameter>
+        <parameter property="userKey" resultMap="UserAndRoleResultMap"></parameter>
+        <parameter property="roleKey" resultMap="UserAndRoleResultMap"></parameter>
+        <parameter property="createts" resultMap="UserAndRoleResultMap"></parameter>
+        <parameter property="modifyts" resultMap="UserAndRoleResultMap"></parameter>
+    </parameterMap>
+
+    <insert id="insert" parameterMap="UserAndRoleParameterMap">
+        <selectKey keyProperty="roleUserKey" order="AFTER" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into SYS_ROLE_USER(USER_KEY,ROLE_KEY,CREATETS,MODIFYTS)
+        VALUES
+        (#{userKey,jdbcType=INTEGER},#{roleKey,jdbcType=INTEGER},#{createts,jdbcType=TIMESTAMP},#{modifyts,jdbcType=TIMESTAMP})
+    </insert>
+</mapper>

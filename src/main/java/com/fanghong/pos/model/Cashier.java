@@ -23,9 +23,11 @@ public class Cashier {
 
     private String resourceFrom;
 
+    private Integer cashierDiscountLevel;
+
     private Date createts;
 
-    private Date modifiyts;
+    private Date modifyts;
 
     public Integer getCashierKey() {
         return cashierKey;
@@ -107,6 +109,14 @@ public class Cashier {
         this.resourceFrom = resourceFrom == null ? null : resourceFrom.trim();
     }
 
+    public Integer getCashierDiscountLevel() {
+        return cashierDiscountLevel;
+    }
+
+    public void setCashierDiscountLevel(Integer cashierDiscountLevel) {
+        this.cashierDiscountLevel = cashierDiscountLevel;
+    }
+
     public Date getCreatets() {
         return createts;
     }
@@ -115,11 +125,11 @@ public class Cashier {
         this.createts = createts;
     }
 
-    public Date getModifiyts() {
-        return modifiyts;
+    public Date getModifyts() {
+        return modifyts;
     }
 
-    public void setModifiyts(Date modifiyts) {
-        this.modifiyts = modifiyts;
+    public void setModifyts(Date modifyts) {
+        this.modifyts = modifyts;
     }
 }

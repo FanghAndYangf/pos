@@ -25,7 +25,7 @@ public class Pos {
 
     private Date createts;
 
-    private Date modifiyts;
+    private Date modifyts;
 
     public Integer getPosKey() {
         return posKey;
@@ -115,11 +115,11 @@ public class Pos {
         this.createts = createts;
     }
 
-    public Date getModifiyts() {
-        return modifiyts;
+    public Date getModifyts() {
+        return modifyts;
     }
 
-    public void setModifiyts(Date modifiyts) {
-        this.modifiyts = modifiyts;
+    public void setModifyts(Date modifyts) {
+        this.modifyts = modifyts;
     }
 }

@@ -3,11 +3,13 @@
   "nickname": "管理员",
   "description": "系统超级管理员，不允许用户更改",
   "banned": false,
-  "state": "normal"
+  "state": "normal",
+  "createUserId" : "InitByFile"
 }, {
   "name": "ROLE_API",
   "nickname": "管理员",
   "description": "开放接口访问",
   "banned": false,
-  "state": "normal"
+  "state": "normal",
+  "createUserId" : "InitByFile"
 }]

@@ -30,7 +30,7 @@
             <column name="POS_ORGANIZATION_CODE" type="char(60)" remarks="连锁总部CODE"></column>
             <column name="PRE_PAID_FLAG" type="char(1)" remarks="是否开启储值功能"></column>
             <column name="CREATETS" type="timestamp(0)" remarks="创建日期"></column>
-            <column name="MODIFIYTS" type="timestamp(0)" remarks="更新日期"></column>
+            <column name="MODIFYTS" type="timestamp(0)" remarks="更新日期"></column>
         </createTable>
     </changeSet>
     <changeSet author="fanghong" id="T000-20190307-001">
@@ -64,7 +64,7 @@
                 <constraints nullable="false"></constraints>
             </column>
             <column name="CREATETS" type="timestamp(0)" remarks="创建日期"></column>
-            <column name="MODIFIYTS" type="timestamp(0)" remarks="更新日期"></column>
+            <column name="MODIFYTS" type="timestamp(0)" remarks="更新日期"></column>
         </createTable>
     </changeSet>
     <changeSet author="fanghong" id="T000-20190308-001">
@@ -95,7 +95,7 @@
             <column name="POS_ORGANIZATION_CODE" type="char(60)" remarks="连锁总部CODE"></column>
             <column name="PRE_PAID_FLAG" type="char(1)" remarks="是否开启储值功能"></column>
             <column name="CREATETS" type="timestamp(0)" remarks="创建日期"></column>
-            <column name="MODIFIYTS" type="timestamp(0)" remarks="更新日期"></column>
+            <column name="MODIFYTS" type="timestamp(0)" remarks="更新日期"></column>
         </createTable>
     </changeSet>
 </databaseChangeLog>

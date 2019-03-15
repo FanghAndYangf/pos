@@ -13,7 +13,7 @@
     <result column="POS_ORGANIZATION_CODE" jdbcType="CHAR" property="posOrganizationCode" />
     <result column="PRE_PAID_FLAG" jdbcType="CHAR" property="prePaidFlag" />
     <result column="CREATETS" jdbcType="TIMESTAMP" property="createts" />
-    <result column="MODIFIYTS" jdbcType="TIMESTAMP" property="modifiyts" />
+    <result column="MODIFYTS" jdbcType="TIMESTAMP" property="modifyts" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -75,7 +75,7 @@
   </sql>
   <sql id="Base_Column_List">
     POS_KEY, POS_MAC, HOST_NAME, IP, POS_NAME, POS_TYPE, STORE_ID, POS_STATUS, POS_ORGANIZATION_CODE, 
-    PRE_PAID_FLAG, CREATETS, MODIFIYTS
+    PRE_PAID_FLAG, CREATETS, MODIFYTS
   </sql>
   <select id="selectByExample" parameterType="com.fanghong.pos.model.PosExample" resultMap="BaseResultMap">
     select
@@ -104,11 +104,11 @@
     insert into POS_REGISTER (POS_MAC, HOST_NAME, IP, 
       POS_NAME, POS_TYPE, STORE_ID, 
       POS_STATUS, POS_ORGANIZATION_CODE, PRE_PAID_FLAG, 
-      CREATETS, MODIFIYTS)
+      CREATETS, MODIFYTS)
     values (#{posMac,jdbcType=VARCHAR}, #{hostName,jdbcType=VARCHAR}, #{ip,jdbcType=CHAR}, 
       #{posName,jdbcType=VARCHAR}, #{posType,jdbcType=CHAR}, #{storeId,jdbcType=CHAR}, 
       #{posStatus,jdbcType=CHAR}, #{posOrganizationCode,jdbcType=CHAR}, #{prePaidFlag,jdbcType=CHAR}, 
-      #{createts,jdbcType=TIMESTAMP}, #{modifiyts,jdbcType=TIMESTAMP})
+      #{createts,jdbcType=TIMESTAMP}, #{modifyts,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.fanghong.pos.model.Pos">
     <selectKey keyProperty="posKey" order="AFTER" resultType="java.lang.Integer">
@@ -146,8 +146,8 @@
       <if test="createts != null">
         CREATETS,
       </if>
-      <if test="modifiyts != null">
-        MODIFIYTS,
+      <if test="modifyts != null">
+        MODIFYTS,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -181,8 +181,8 @@
       <if test="createts != null">
         #{createts,jdbcType=TIMESTAMP},
       </if>
-      <if test="modifiyts != null">
-        #{modifiyts,jdbcType=TIMESTAMP},
+      <if test="modifyts != null">
+        #{modifyts,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -228,8 +228,8 @@
       <if test="record.createts != null">
         CREATETS = #{record.createts,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.modifiyts != null">
-        MODIFIYTS = #{record.modifiyts,jdbcType=TIMESTAMP},
+      <if test="record.modifyts != null">
+        MODIFYTS = #{record.modifyts,jdbcType=TIMESTAMP},
       </if>
     </set>
     <if test="_parameter != null">
@@ -249,7 +249,7 @@
       POS_ORGANIZATION_CODE = #{record.posOrganizationCode,jdbcType=CHAR},
       PRE_PAID_FLAG = #{record.prePaidFlag,jdbcType=CHAR},
       CREATETS = #{record.createts,jdbcType=TIMESTAMP},
-      MODIFIYTS = #{record.modifiyts,jdbcType=TIMESTAMP}
+      MODIFYTS = #{record.modifyts,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

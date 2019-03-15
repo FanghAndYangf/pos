@@ -6,5 +6,20 @@
   "userMobile": "18861654476",
   "resourceFrom": "POS",
   "userStatus": "0",
-  "userType": "1"
-}]
+  "userType": "1",
+  "createUserId" : "InitByFile",
+  "roles":["ROLE_ADMIN"]
+},
+  {
+    "nickName": "API对接员",
+    "deptId": "0",
+    "username":"api",
+    "password":"123456",
+    "userMobile": "18861654476",
+    "resourceFrom": "POS",
+    "userStatus": "0",
+    "userType": "1",
+    "createUserId" : "InitByFile",
+    "roles":["ROLE_API"]
+  }
+]

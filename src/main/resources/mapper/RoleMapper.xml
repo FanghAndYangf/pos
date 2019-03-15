@@ -3,19 +3,19 @@
 <mapper namespace="com.fanghong.pos.dao.RoleMapper">
     <resultMap id="RoleResultMap" type="com.fanghong.pos.domain.RoleDomain">
         <result column="ROLE_KEY" property="roleKey" jdbcType="INTEGER"></result>
-        <result column="IS_REMOVED" property="isRemoved" jdbcType="BOOLEAN"></result>
+        <result column="IS_REMOVED" property="isRemoved" jdbcType="BIT"></result>
         <result column="ROLE_NAME" property="name" jdbcType="CHAR"></result>
         <result column="NIKE_NAME" property="nickname" jdbcType="VARCHAR"></result>
         <result column="ROLE_DESCRIPTION" property="description" jdbcType="VARCHAR"></result>
-        <result column="ROLE_BUILD_IN" property="builtIn" jdbcType="BOOLEAN"></result>
-        <result column="ROLE_STATUS" property="banned" jdbcType="BOOLEAN"></result>
+        <result column="ROLE_BUILD_IN" property="builtIn" jdbcType="BIT"></result>
+        <result column="ROLE_STATUS" property="banned" jdbcType="BIT"></result>
         <result column="CREATETS" property="createts" jdbcType="TIMESTAMP"></result>
-        <result column="MODIFIYTS" property="modifyts" jdbcType="TIMESTAMP"></result>
+        <result column="MODIFYTS" property="modifyts" jdbcType="TIMESTAMP"></result>
         <result column="CREATE_USERID" property="createUserId" jdbcType="CHAR"></result>
         <result column="MODIFY_USERID" property="modifyUserId" jdbcType="CHAR"></result>
     </resultMap>
 
-    <parameterMap id="RoleParameterMap" type="com.fanghong.pos.domain.UserDomain">
+    <parameterMap id="RoleParameterMap" type="com.fanghong.pos.domain.RoleDomain">
         <parameter property="roleKey" resultMap="RoleResultMap"></parameter>
         <parameter property="isRemoved" resultMap="RoleResultMap"></parameter>
         <parameter property="name" resultMap="RoleResultMap"></parameter>
@@ -33,7 +33,37 @@
         <selectKey keyProperty="roleKey" order="AFTER" resultType="java.lang.Integer">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        insert into SYS_ROLE(IS_REMOVED,ROLE_NAME,NIKE_NAME,ROLE_DESCRIPTION,ROLE_BUILD_IN,ROLE_STATUS,CREATE_USERID,MODIFY_USERID,CREATETS,MODIFIYTS)
+        insert into SYS_ROLE(IS_REMOVED,ROLE_NAME,NIKE_NAME,ROLE_DESCRIPTION,ROLE_BUILD_IN,ROLE_STATUS,CREATE_USERID,MODIFY_USERID,CREATETS,MODIFYTS)
         values
+        (#{isRemoved,jdbcType=BIT},#{name,jdbcType=CHAR},#{nickname,jdbcType=VARCHAR},#{description,jdbcType=VARCHAR},#{builtIn,jdbcType=BIT},#{banned,jdbcType=BIT}
+        ,#{createUserId,jdbcType=CHAR},#{modifyUserId,jdbcType=CHAR},#{createts,jdbcType=TIMESTAMP},#{modifyts,jdbcType=TIMESTAMP})
     </insert>
+
+    <select id="countByName" parameterType="java.lang.String" resultType="java.lang.Integer">
+        select count(1) from SYS_ROLE
+        <where>
+            <choose>
+                <when test="_parameter != null">
+                    ROLE_NAME = #{_parameter}
+                </when>
+                <otherwise>
+                    1 = 2
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <select id="selectRloeByMap" parameterType="java.lang.String" resultMap="RoleResultMap">
+        select * from SYS_ROLE
+        <where>
+            <choose>
+                <when test="_parameter != null">
+                    ROLE_NAME = #{_parameter}
+                </when>
+                <otherwise>
+                    1 = 2
+                </otherwise>
+            </choose>
+        </where>
+    </select>
 </mapper>

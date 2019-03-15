@@ -12,8 +12,9 @@
     <result column="CASHIER_STATUS" jdbcType="CHAR" property="cashierStatus" />
     <result column="REGIST_TYPE" jdbcType="CHAR" property="registType" />
     <result column="RESOURCE_FROM" jdbcType="CHAR" property="resourceFrom" />
+    <result column="CASHIER_DISCOUNT_LEVEL" jdbcType="INTEGER" property="cashierDiscountLevel" />
     <result column="CREATETS" jdbcType="TIMESTAMP" property="createts" />
-    <result column="MODIFIYTS" jdbcType="TIMESTAMP" property="modifiyts" />
+    <result column="MODIFYTS" jdbcType="TIMESTAMP" property="modifyts" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -75,7 +76,7 @@
   </sql>
   <sql id="Base_Column_List">
     CASHIER_KEY, CASHIER_PASSWORD, USER_ID, USER_PASSWORD, USER_NAME, USER_MOBILE, DEPT_ID, 
-    CASHIER_STATUS, REGIST_TYPE, RESOURCE_FROM, CREATETS, MODIFIYTS
+    CASHIER_STATUS, REGIST_TYPE, RESOURCE_FROM, CASHIER_DISCOUNT_LEVEL, CREATETS, MODIFYTS
   </sql>
   <select id="selectByExample" parameterType="com.fanghong.pos.model.CashierExample" resultMap="BaseResultMap">
     select
@@ -104,11 +105,13 @@
     insert into POS_CASHIER (CASHIER_PASSWORD, USER_ID, USER_PASSWORD, 
       USER_NAME, USER_MOBILE, DEPT_ID, 
       CASHIER_STATUS, REGIST_TYPE, RESOURCE_FROM, 
-      CREATETS, MODIFIYTS)
+      CASHIER_DISCOUNT_LEVEL, CREATETS, MODIFYTS
+      )
     values (#{cashierPassword,jdbcType=CHAR}, #{userId,jdbcType=CHAR}, #{userPassword,jdbcType=CHAR}, 
       #{userName,jdbcType=VARCHAR}, #{userMobile,jdbcType=CHAR}, #{deptId,jdbcType=CHAR}, 
       #{cashierStatus,jdbcType=CHAR}, #{registType,jdbcType=CHAR}, #{resourceFrom,jdbcType=CHAR}, 
-      #{createts,jdbcType=TIMESTAMP}, #{modifiyts,jdbcType=TIMESTAMP})
+      #{cashierDiscountLevel,jdbcType=INTEGER}, #{createts,jdbcType=TIMESTAMP}, #{modifyts,jdbcType=TIMESTAMP}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.fanghong.pos.model.Cashier">
     <selectKey keyProperty="cashierKey" order="AFTER" resultType="java.lang.Integer">
@@ -143,11 +146,14 @@
       <if test="resourceFrom != null">
         RESOURCE_FROM,
       </if>
+      <if test="cashierDiscountLevel != null">
+        CASHIER_DISCOUNT_LEVEL,
+      </if>
       <if test="createts != null">
         CREATETS,
       </if>
-      <if test="modifiyts != null">
-        MODIFIYTS,
+      <if test="modifyts != null">
+        MODIFYTS,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -178,11 +184,14 @@
       <if test="resourceFrom != null">
         #{resourceFrom,jdbcType=CHAR},
       </if>
+      <if test="cashierDiscountLevel != null">
+        #{cashierDiscountLevel,jdbcType=INTEGER},
+      </if>
       <if test="createts != null">
         #{createts,jdbcType=TIMESTAMP},
       </if>
-      <if test="modifiyts != null">
-        #{modifiyts,jdbcType=TIMESTAMP},
+      <if test="modifyts != null">
+        #{modifyts,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -225,11 +234,14 @@
       <if test="record.resourceFrom != null">
         RESOURCE_FROM = #{record.resourceFrom,jdbcType=CHAR},
       </if>
+      <if test="record.cashierDiscountLevel != null">
+        CASHIER_DISCOUNT_LEVEL = #{record.cashierDiscountLevel,jdbcType=INTEGER},
+      </if>
       <if test="record.createts != null">
         CREATETS = #{record.createts,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.modifiyts != null">
-        MODIFIYTS = #{record.modifiyts,jdbcType=TIMESTAMP},
+      <if test="record.modifyts != null">
+        MODIFYTS = #{record.modifyts,jdbcType=TIMESTAMP},
       </if>
     </set>
     <if test="_parameter != null">
@@ -248,8 +260,9 @@
       CASHIER_STATUS = #{record.cashierStatus,jdbcType=CHAR},
       REGIST_TYPE = #{record.registType,jdbcType=CHAR},
       RESOURCE_FROM = #{record.resourceFrom,jdbcType=CHAR},
+      CASHIER_DISCOUNT_LEVEL = #{record.cashierDiscountLevel,jdbcType=INTEGER},
       CREATETS = #{record.createts,jdbcType=TIMESTAMP},
-      MODIFIYTS = #{record.modifiyts,jdbcType=TIMESTAMP}
+      MODIFYTS = #{record.modifyts,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

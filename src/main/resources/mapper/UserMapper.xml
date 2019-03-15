@@ -12,7 +12,9 @@
         <result column="USER_TYPE" property="userType" jdbcType="CHAR"></result>
         <result column="RESOURCE_FROM" property="resourceFrom" jdbcType="CHAR"></result>
         <result column="CREATETS" property="createts" jdbcType="TIMESTAMP"></result>
-        <result column="MODIFIYTS" property="modifyts" jdbcType="TIMESTAMP"></result>
+        <result column="MODIFIYTS" property="modifiyts" jdbcType="TIMESTAMP"></result>
+        <result column="CREATE_USERID" property="createUserId" jdbcType="CHAR"></result>
+        <result column="MODIFY_USERID" property="modifyUserId" jdbcType="CHAR"></result>
     </resultMap>
     <parameterMap id="UserParameterMap" type="com.fanghong.pos.domain.UserDomain">
         <parameter property="userKey" resultMap="UserResultMap"/>
@@ -26,16 +28,18 @@
         <parameter property="resourceFrom" resultMap="UserResultMap"/>
         <parameter property="createts" resultMap="UserResultMap"/>
         <parameter property="modifyts" resultMap="UserResultMap"/>
+        <parameter property="createUserId" resultMap="UserResultMap"/>
+        <parameter property="modifyUserId" resultMap="UserResultMap"/>
     </parameterMap>
     <insert id="insert" parameterMap="UserParameterMap">
         <selectKey keyProperty="userKey" order="AFTER" resultType="java.lang.Integer">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        insert into SYS_USER(NICK_NAME,LOGIN_ID,LOGIN_PASSWORD,USER_MOBILE,DEPT_ID,USER_STATUS,USER_TYPE,RESOURCE_FROM,CREATETS,MODIFIYTS)
+        insert into SYS_USER(NICK_NAME,LOGIN_ID,LOGIN_PASSWORD,USER_MOBILE,DEPT_ID,USER_STATUS,USER_TYPE,RESOURCE_FROM,CREATETS,MODIFYTS,CREATE_USERID,MODIFY_USERID)
         values
         (#{nickName,jdbcType=VARCHAR},#{username,jdbcType=CHAR},#{password,jdbcType=CHAR},
         #{userMobile,jdbcType=CHAR},#{deptId,jdbcType=CHAR},#{userStatus,jdbcType=CHAR},#{userType,jdbcType=CHAR},
-        #{resourceFrom,jdbcType=CHAR},#{createts,jdbcType=TIMESTAMP},#{modifyts,jdbcType=TIMESTAMP})
+        #{resourceFrom,jdbcType=CHAR},#{createts,jdbcType=TIMESTAMP},#{modifyts,jdbcType=TIMESTAMP},#{createUserId,jdbcType=CHAR},#{modifyUserId,jdbcType=CHAR})
     </insert>
     <select id="countByUserName" parameterType="java.lang.String" resultType="java.lang.Integer">
         select count(1) from SYS_USER
