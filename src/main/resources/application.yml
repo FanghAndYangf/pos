@@ -35,6 +35,18 @@ spring:
     enabled: false
   profiles:
     active: dev
+  redis:
+    database: 0
+    host: 148.70.222.74
+    jedis:
+      pool:
+        max-active: 200
+        max-idle: 10
+        min-idle: 0
+        max-wait: -1ms
+    password:
+    timeout: 1000ms
+    port: 6379
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml

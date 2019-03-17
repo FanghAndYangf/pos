@@ -15,6 +15,12 @@
         <result column="MODIFIYTS" property="modifiyts" jdbcType="TIMESTAMP"></result>
         <result column="CREATE_USERID" property="createUserId" jdbcType="CHAR"></result>
         <result column="MODIFY_USERID" property="modifyUserId" jdbcType="CHAR"></result>
+        <collection property="roleDomainList" ofType="com.fanghong.pos.domain.RoleDomain">
+            <result column="IS_REMOVED" property="isRemoved" jdbcType="BIT"></result>
+            <result column="ROLE_NAME" property="name" jdbcType="CHAR"></result>
+            <result column="ROLE_DESCRIPTION" property="description" jdbcType="VARCHAR"></result>
+            <result column="ROLE_STATUS" property="banned" jdbcType="BIT"></result>
+        </collection>
     </resultMap>
     <parameterMap id="UserParameterMap" type="com.fanghong.pos.domain.UserDomain">
         <parameter property="userKey" resultMap="UserResultMap"/>
@@ -47,6 +53,32 @@
             <choose>
                 <when test="_parameter != null">
                     LOGIN_ID = #{_parameter}
+                </when>
+                <otherwise>
+                    1 = 2
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+    <select id="selectUserAndRoleByName" parameterType="java.lang.String" resultMap="UserResultMap">
+        SELECT
+        su.USER_KEY,
+        su.LOGIN_ID,
+        su.LOGIN_PASSWORD,
+        su.USER_MOBILE,
+        su.USER_STATUS,
+        sr.IS_REMOVED,
+        sr.ROLE_NAME,
+        sr.ROLE_STATUS,
+        sr.ROLE_DESCRIPTION
+        FROM
+        SYS_USER su
+        LEFT JOIN SYS_ROLE_USER sru ON su.USER_KEY = sru.USER_KEY
+        left join SYS_ROLE sr on sru.ROLE_KEY = sr.ROLE_KEY
+        <where>
+            <choose>
+                <when test="_parameter != null">
+                    su.LOGIN_ID = #{_parameter}
                 </when>
                 <otherwise>
                     1 = 2

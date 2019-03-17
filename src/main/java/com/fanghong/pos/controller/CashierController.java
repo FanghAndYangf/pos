@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.util.Date;
 
 @RestController
@@ -41,9 +42,12 @@ public class CashierController {
         cashier.setCreatets(new Date());     //获取当前时间
         cashier.setCashierStatus("1");       //默认启用状态
         cashier.setRegistType("0");          //个体收银
+        if(null == cashier.getCashierDiscountLevel()) cashier.setCashierDiscountLevel(new BigDecimal(1));
         int loginId = cashierService.addCashier(cashier);
         RegisterCashierBody registerCashierBody = new RegisterCashierBody();
         registerCashierBody.setLoginId(String.valueOf(cashier.getCashierKey()));
+        registerCashierBody.setCashierStatus(cashier.getCashierStatus());
+        registerCashierBody.setCashierDiscountLevel(cashier.getCashierDiscountLevel());
         r.setStatus("success");
         r.setData(registerCashierBody);
         r.setMessage("管理员创建成功!");

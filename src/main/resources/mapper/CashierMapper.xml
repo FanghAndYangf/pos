@@ -12,7 +12,7 @@
     <result column="CASHIER_STATUS" jdbcType="CHAR" property="cashierStatus" />
     <result column="REGIST_TYPE" jdbcType="CHAR" property="registType" />
     <result column="RESOURCE_FROM" jdbcType="CHAR" property="resourceFrom" />
-    <result column="CASHIER_DISCOUNT_LEVEL" jdbcType="INTEGER" property="cashierDiscountLevel" />
+    <result column="CASHIER_DISCOUNT_LEVEL" jdbcType="DECIMAL" property="cashierDiscountLevel" />
     <result column="CREATETS" jdbcType="TIMESTAMP" property="createts" />
     <result column="MODIFYTS" jdbcType="TIMESTAMP" property="modifyts" />
   </resultMap>
@@ -110,7 +110,7 @@
     values (#{cashierPassword,jdbcType=CHAR}, #{userId,jdbcType=CHAR}, #{userPassword,jdbcType=CHAR}, 
       #{userName,jdbcType=VARCHAR}, #{userMobile,jdbcType=CHAR}, #{deptId,jdbcType=CHAR}, 
       #{cashierStatus,jdbcType=CHAR}, #{registType,jdbcType=CHAR}, #{resourceFrom,jdbcType=CHAR}, 
-      #{cashierDiscountLevel,jdbcType=INTEGER}, #{createts,jdbcType=TIMESTAMP}, #{modifyts,jdbcType=TIMESTAMP}
+      #{cashierDiscountLevel,jdbcType=DECIMAL}, #{createts,jdbcType=TIMESTAMP}, #{modifyts,jdbcType=TIMESTAMP}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.fanghong.pos.model.Cashier">
@@ -185,7 +185,7 @@
         #{resourceFrom,jdbcType=CHAR},
       </if>
       <if test="cashierDiscountLevel != null">
-        #{cashierDiscountLevel,jdbcType=INTEGER},
+        #{cashierDiscountLevel,jdbcType=DECIMAL},
       </if>
       <if test="createts != null">
         #{createts,jdbcType=TIMESTAMP},
@@ -235,7 +235,7 @@
         RESOURCE_FROM = #{record.resourceFrom,jdbcType=CHAR},
       </if>
       <if test="record.cashierDiscountLevel != null">
-        CASHIER_DISCOUNT_LEVEL = #{record.cashierDiscountLevel,jdbcType=INTEGER},
+        CASHIER_DISCOUNT_LEVEL = #{record.cashierDiscountLevel,jdbcType=DECIMAL},
       </if>
       <if test="record.createts != null">
         CREATETS = #{record.createts,jdbcType=TIMESTAMP},
@@ -260,7 +260,7 @@
       CASHIER_STATUS = #{record.cashierStatus,jdbcType=CHAR},
       REGIST_TYPE = #{record.registType,jdbcType=CHAR},
       RESOURCE_FROM = #{record.resourceFrom,jdbcType=CHAR},
-      CASHIER_DISCOUNT_LEVEL = #{record.cashierDiscountLevel,jdbcType=INTEGER},
+      CASHIER_DISCOUNT_LEVEL = #{record.cashierDiscountLevel,jdbcType=DECIMAL},
       CREATETS = #{record.createts,jdbcType=TIMESTAMP},
       MODIFYTS = #{record.modifyts,jdbcType=TIMESTAMP}
     <if test="_parameter != null">

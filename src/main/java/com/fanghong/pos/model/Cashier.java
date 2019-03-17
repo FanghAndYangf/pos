@@ -1,5 +1,6 @@
 package com.fanghong.pos.model;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class Cashier {
@@ -23,7 +24,7 @@ public class Cashier {
 
     private String resourceFrom;
 
-    private Integer cashierDiscountLevel;
+    private BigDecimal cashierDiscountLevel;
 
     private Date createts;
 
@@ -109,11 +110,11 @@ public class Cashier {
         this.resourceFrom = resourceFrom == null ? null : resourceFrom.trim();
     }
 
-    public Integer getCashierDiscountLevel() {
+    public BigDecimal getCashierDiscountLevel() {
         return cashierDiscountLevel;
     }
 
-    public void setCashierDiscountLevel(Integer cashierDiscountLevel) {
+    public void setCashierDiscountLevel(BigDecimal cashierDiscountLevel) {
         this.cashierDiscountLevel = cashierDiscountLevel;
     }
 

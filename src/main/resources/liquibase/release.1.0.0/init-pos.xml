@@ -60,7 +60,7 @@
             <column name="RESOURCE_FROM" type="char(30)" remarks="注册来源渠道">
                 <constraints nullable="false"></constraints>
             </column>
-            <column name="CASHIER_DISCOUNT_LEVEL" type="int" remarks="折扣权限（0~1）">
+            <column name="CASHIER_DISCOUNT_LEVEL" type="DECIMAL(2,1)" remarks="折扣权限（0~1）">
                 <constraints nullable="false"></constraints>
             </column>
             <column name="CREATETS" type="timestamp(0)" remarks="创建日期"></column>

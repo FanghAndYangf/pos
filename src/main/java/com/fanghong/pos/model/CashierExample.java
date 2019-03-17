@@ -1,5 +1,6 @@
 package com.fanghong.pos.model;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -805,52 +806,52 @@ public class CashierExample {
             return (Criteria) this;
         }
 
-        public Criteria andCashierDiscountLevelEqualTo(Integer value) {
+        public Criteria andCashierDiscountLevelEqualTo(BigDecimal value) {
             addCriterion("CASHIER_DISCOUNT_LEVEL =", value, "cashierDiscountLevel");
             return (Criteria) this;
         }
 
-        public Criteria andCashierDiscountLevelNotEqualTo(Integer value) {
+        public Criteria andCashierDiscountLevelNotEqualTo(BigDecimal value) {
             addCriterion("CASHIER_DISCOUNT_LEVEL <>", value, "cashierDiscountLevel");
             return (Criteria) this;
         }
 
-        public Criteria andCashierDiscountLevelGreaterThan(Integer value) {
+        public Criteria andCashierDiscountLevelGreaterThan(BigDecimal value) {
             addCriterion("CASHIER_DISCOUNT_LEVEL >", value, "cashierDiscountLevel");
             return (Criteria) this;
         }
 
-        public Criteria andCashierDiscountLevelGreaterThanOrEqualTo(Integer value) {
+        public Criteria andCashierDiscountLevelGreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("CASHIER_DISCOUNT_LEVEL >=", value, "cashierDiscountLevel");
             return (Criteria) this;
         }
 
-        public Criteria andCashierDiscountLevelLessThan(Integer value) {
+        public Criteria andCashierDiscountLevelLessThan(BigDecimal value) {
             addCriterion("CASHIER_DISCOUNT_LEVEL <", value, "cashierDiscountLevel");
             return (Criteria) this;
         }
 
-        public Criteria andCashierDiscountLevelLessThanOrEqualTo(Integer value) {
+        public Criteria andCashierDiscountLevelLessThanOrEqualTo(BigDecimal value) {
             addCriterion("CASHIER_DISCOUNT_LEVEL <=", value, "cashierDiscountLevel");
             return (Criteria) this;
         }
 
-        public Criteria andCashierDiscountLevelIn(List<Integer> values) {
+        public Criteria andCashierDiscountLevelIn(List<BigDecimal> values) {
             addCriterion("CASHIER_DISCOUNT_LEVEL in", values, "cashierDiscountLevel");
             return (Criteria) this;
         }
 
-        public Criteria andCashierDiscountLevelNotIn(List<Integer> values) {
+        public Criteria andCashierDiscountLevelNotIn(List<BigDecimal> values) {
             addCriterion("CASHIER_DISCOUNT_LEVEL not in", values, "cashierDiscountLevel");
             return (Criteria) this;
         }
 
-        public Criteria andCashierDiscountLevelBetween(Integer value1, Integer value2) {
+        public Criteria andCashierDiscountLevelBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("CASHIER_DISCOUNT_LEVEL between", value1, value2, "cashierDiscountLevel");
             return (Criteria) this;
         }
 
-        public Criteria andCashierDiscountLevelNotBetween(Integer value1, Integer value2) {
+        public Criteria andCashierDiscountLevelNotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("CASHIER_DISCOUNT_LEVEL not between", value1, value2, "cashierDiscountLevel");
             return (Criteria) this;
         }
