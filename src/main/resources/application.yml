@@ -47,10 +47,17 @@ spring:
     password:
     timeout: 1000ms
     port: 6379
-
+  thymeleaf:
+    mode: HTML
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+    #开发时关闭缓存,不然没法看到实时页面
+    cache: false
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.fanghong.pos.Model
+  type-handlers-package: com.fanghong.pos.typehandler
 
 pagehelper:
   #dialect: mysql
