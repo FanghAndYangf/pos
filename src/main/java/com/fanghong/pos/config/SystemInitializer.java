@@ -1,9 +1,11 @@
 package com.fanghong.pos.config;
 
 import com.fanghong.pos.adapter.SpringfoxJsonToGsonAdapter;
+import com.fanghong.pos.dao.OauthClientDetailsMapper;
 import com.fanghong.pos.dao.RoleMapper;
 import com.fanghong.pos.dao.UserAndRoleMapper;
 import com.fanghong.pos.dao.UserMapper;
+import com.fanghong.pos.domain.OauthClientDetailsDomain;
 import com.fanghong.pos.domain.RoleDomain;
 import com.fanghong.pos.domain.UserAndRoleDomain;
 import com.fanghong.pos.domain.UserDomain;
@@ -32,11 +34,14 @@ public class SystemInitializer {
 
     @Value("${initialzation.file.users:users.json}") private String userFileName;
     @Value("${initialzation.file.roles:roles.json}") private String roleFileName;
+    @Value("${initialzation.file.clients:clients.json}") private String oauth2FileName;
 
     @Resource
     private UserMapper userMapper;
     @Resource
     private RoleMapper roleMapper;
+    @Resource
+    private OauthClientDetailsMapper oauthClientDetailsMapper ;
     @Resource
     private UserAndRoleMapper userAndRoleMapper;
 
@@ -44,6 +49,7 @@ public class SystemInitializer {
     public boolean initialize() throws Exception {
         InputStream userInputStream = null;
         InputStream roleInputStream = null;
+        InputStream oauth2ClientsStream = null;
         try{
             userInputStream = getClass().getClassLoader().getResourceAsStream(userFileName);
             if(null == userInputStream) throw new Exception("initialzation user file not found: " + userFileName);
@@ -51,6 +57,8 @@ public class SystemInitializer {
             roleInputStream = getClass().getClassLoader().getResourceAsStream(roleFileName);
             if(null == roleInputStream) throw new Exception("initialzation role file not found: " + roleFileName);
 
+            oauth2ClientsStream = getClass().getClassLoader().getResourceAsStream(oauth2FileName);
+            if(null == oauth2ClientsStream) throw new Exception("initialzation role file not found: " + oauth2FileName);
             Gson gson = new GsonBuilder()
                     .setDateFormat("yyyy-MM-dd HH:mm:ss")
                     .setPrettyPrinting()
@@ -87,6 +95,18 @@ public class SystemInitializer {
                     }
                 }
             }
+
+            //导入初始的oauth2_clients信息
+            Type oauth2ClientsConfigTokenType = new TypeToken<ArrayList<OauthClientDetailsDomain>>(){}.getType();
+            ArrayList<OauthClientDetailsDomain> oauthClientDetailsDomains = gson.fromJson(new InputStreamReader(oauth2ClientsStream,
+                    StandardCharsets.UTF_8),oauth2ClientsConfigTokenType);
+            for(OauthClientDetailsDomain oauthClientDetailsDomain : oauthClientDetailsDomains){
+                int isExist = oauthClientDetailsMapper.countOauthClientDetailsByClientId(oauthClientDetailsDomain.getClientId());
+                if(isExist == 0) {
+                    oauthClientDetailsMapper.insert(oauthClientDetailsDomain);
+                }
+            }
+
         }finally {
             if(null != userInputStream) userInputStream.close();
             if(null != roleInputStream) roleInputStream.close();
