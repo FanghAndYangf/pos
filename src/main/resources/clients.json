@@ -1,0 +1,21 @@
+[{
+  "clientId": "client_1",
+  "resourceIds": "order",
+  "clientSecret" : "123456",
+  "scope" : "select",
+  "authorities" : "oauth2",
+  "authorizedGrantTypes" : ["client_credentials","refresh_token"],
+  "accessTokenValidity" : 1,
+  "refreshTokenValidity" : 1
+},
+  {
+    "clientId": "client_2",
+    "resourceIds": "order",
+    "clientSecret" : "123456",
+    "scope" : "select",
+    "authorities" : "oauth2",
+    "authorizedGrantTypes" : ["password","refresh_token"],
+    "accessTokenValidity" : 1,
+    "refreshTokenValidity" : 1
+  }
+]
