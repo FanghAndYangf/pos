@@ -4,20 +4,20 @@
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
     <changeSet id="T000-20190317-001" author="fanghong">
-        <createTable tableName="OAUTH_CLIENT_DETAILS" remarks="oauth2 客户端详情">
-            <column name="CLIENT_ID" remarks="客户端id" type="varchar(255)">
+        <createTable tableName="oauth_client_details" remarks="oauth2 客户端详情">
+            <column name="client_id" remarks="客户端id" type="varchar(255)">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="PK_OAUTH_CLIENT_ID"></constraints>
             </column>
-            <column name="RESOURCE_IDS" type="varchar(255)" remarks="资源服务id"></column>
-            <column name="CLIENT_SECRET" type="varchar(255)" remarks="客户端密钥"></column>
-            <column name="SCOPE" type="varchar(255)" remarks="权限范围"></column>
-            <column name="AUTHORIZED_GRANT_TYPES" type="varchar(255)" remarks="认证方式"></column>
-            <column name="WEB_SERVER_REDIRECT_URI" type="varchar(255)" remarks="WEB服务器重定向地址"></column>
-            <column name="AUTHORITIES" type="varchar(255)" remarks="认证"></column>
-            <column name="ACCESS_TOKEN_VALIDITY" type="int" remarks="token有效期"></column>
-            <column name="REFRESH_TOKEN_VALIDITY" type="int" remarks="refresh token 有效期"></column>
-            <column name="ADDITIONAL_INFORMATION" type="varchar(255)" remarks="其他信息"></column>
-            <column name="AUTOAPPROVE" type="varchar(255)" remarks="提供者" defaultValue="false"></column>
+            <column name="resource_ids" type="varchar(255)" remarks="资源服务id"></column>
+            <column name="client_secret" type="varchar(255)" remarks="客户端密钥"></column>
+            <column name="scope" type="varchar(255)" remarks="权限范围"></column>
+            <column name="authorized_grant_types" type="varchar(255)" remarks="认证方式"></column>
+            <column name="web_server_redirect_uri" type="varchar(255)" remarks="WEB服务器重定向地址"></column>
+            <column name="authorities" type="varchar(255)" remarks="认证"></column>
+            <column name="access_token_validity" type="int" remarks="token有效期"></column>
+            <column name="refresh_token_validity" type="int" remarks="refresh token 有效期"></column>
+            <column name="additional_information" type="varchar(255)" remarks="其他信息"></column>
+            <column name="autoapprove" type="varchar(255)" remarks="提供者" defaultValue="false"></column>
         </createTable>
         <createTable tableName="OAUTH_ACCESS_TOKEN" remarks="OAUTH token">
             <column name="TOKEN_ID" type="varchar(255)" remarks="TOKEN ID"></column>
