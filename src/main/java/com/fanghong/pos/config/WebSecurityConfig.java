@@ -54,6 +54,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception{
         httpSecurity.authorizeRequests()
                 .antMatchers("/oauth/*").permitAll()
+                .antMatchers("/templates/*").permitAll()
                 // swagger start
                 .antMatchers("/swagger-ui.html").hasRole("ADMIN")
                 .antMatchers("/swagger-resources/**").hasRole("ADMIN")
