@@ -1,15 +1,33 @@
 package com.fanghong.pos.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Map;
 
+@Controller
 public class LoginController {
 
-    public String login(Map<String,Object> paramMap){
-        paramMap.put("name", "张三");
-        paramMap.put("age", 35);
+    @GetMapping(value = "/")
+    public String root(){
+        return "redirect:/index";
+    }
+
+    @RequestMapping("/index")
+    public String index() {
+        return "index";
+    }
+
+    @RequestMapping("/login")
+    public String login() {
         return "login";
     }
+
+    @RequestMapping("/user/index")
+    public String userIndex() {
+        return "user/index";
+    }
+
+
 }

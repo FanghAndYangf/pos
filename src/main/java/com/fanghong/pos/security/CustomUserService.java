@@ -30,9 +30,11 @@ public class CustomUserService implements UserDetailsService{
         List<SimpleGrantedAuthority> authorityList = new ArrayList<>();
         List<RoleDomain> rolesList = userDomain.getRoleDomainList();
         List<String> roles = rolesList.stream().map(roleDomain -> roleDomain.getName()).collect(Collectors.toList());
+
         for(String role : roles){
             authorityList.add(new SimpleGrantedAuthority(role));
         }
+
         return new User(userDomain.getUsername(), userDomain.getPassword(),
                 userDomain.isEnabled(), userDomain.isAccountNonExpired(),
                 userDomain.isCredentialsNonExpired(), userDomain.isAccountNonLocked(), authorityList);

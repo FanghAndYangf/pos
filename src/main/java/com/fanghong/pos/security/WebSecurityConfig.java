@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -54,7 +55,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception{
-        httpSecurity.authorizeRequests()
+        /*httpSecurity.authorizeRequests()
                 .antMatchers("/oauth/*").permitAll()
                 .antMatchers("/templates/*").permitAll()
                 .antMatchers("/login","/oauth/authorize","/oauth/confirm_access","/appManager").permitAll()
@@ -71,16 +72,30 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticated()                //任何请求登陆后访问
                 .and()
                 .formLogin()
-                .loginPage("/login")
+                .usernameParameter("username")
+                .passwordParameter("password")
+                .loginPage("/login.html")
+                .successForwardUrl("/hello")
                 .failureUrl("/login?error")
                 .permitAll()                   //登陆页面任何人可访问
                 .and()
-                .logout().permitAll();          //注销行为任意访问
+                .logout().permitAll();*/          //注销行为任意访问
+        httpSecurity.authorizeRequests()
+                .antMatchers("/", "/index").permitAll()
+                .antMatchers("/user/**").hasRole("ADMIN")
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .permitAll()
+                .and()
+                .logout()
+                .permitAll();
     }
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/assets/**");
+        web.ignoring().antMatchers("/static/**", "/templates/**");
     }
 
 }

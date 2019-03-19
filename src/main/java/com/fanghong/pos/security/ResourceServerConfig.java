@@ -6,8 +6,6 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 
-@Configuration
-@EnableResourceServer
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     private static final String DEMO_RESOURCE_ID = "order";
@@ -21,5 +19,13 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers("/order/**").authenticated();//配置order访问控制, 必须认证过后才可以访问
         http.authorizeRequests().antMatchers("/api/**").authenticated();
+        /*http.authorizeRequests()
+                .anyRequest()
+                .authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .failureUrl("/login?error")
+                .permitAll();*/
     }
 }

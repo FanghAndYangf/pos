@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Hello + Spring Security 5.x + Spring Boot 2.x</title>
+    <meta charset="utf-8" />
+</head>
+<body>
+<div th:substituteby="index::logout"></div>
+<br/>
+<h1>这是一个安全页面!</h1>
+<p><a href="/index" th:href="@{/index}">回到首页</a></p>
+</body>
+</html>

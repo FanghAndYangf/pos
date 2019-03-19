@@ -54,6 +54,9 @@ spring:
       content-type: text/html
     #开发时关闭缓存,不然没法看到实时页面
     cache: false
+  security:
+    filter:
+      order: 3
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.fanghong.pos.Model
