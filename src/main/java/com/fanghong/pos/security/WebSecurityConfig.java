@@ -1,4 +1,4 @@
-package com.fanghong.pos.config;
+package com.fanghong.pos.security;
 
 import com.fanghong.pos.security.CustomUserService;
 import com.fanghong.pos.security.MyPasswordEncoder;
@@ -9,7 +9,9 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -55,6 +57,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity.authorizeRequests()
                 .antMatchers("/oauth/*").permitAll()
                 .antMatchers("/templates/*").permitAll()
+                .antMatchers("/login","/oauth/authorize","/oauth/confirm_access","/appManager").permitAll()
                 // swagger start
                 .antMatchers("/swagger-ui.html").hasRole("ADMIN")
                 .antMatchers("/swagger-resources/**").hasRole("ADMIN")
@@ -68,9 +71,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticated()                //任何请求登陆后访问
                 .and()
                 .formLogin()
+                .loginPage("/login")
+                .failureUrl("/login?error")
                 .permitAll()                   //登陆页面任何人可访问
                 .and()
                 .logout().permitAll();          //注销行为任意访问
+    }
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/assets/**");
     }
 
 }

@@ -5,7 +5,7 @@ import org.springframework.core.io.DefaultResourceLoader;
 
 import javax.sql.DataSource;
 
-public class LiquibaseConfiguration {
+public class LiquibaseConfig {
 
     public SpringLiquibase userLiquibase(DataSource dataSource){
         SpringLiquibase liquibase = new SpringLiquibase();

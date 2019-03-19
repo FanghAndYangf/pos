@@ -9,12 +9,12 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyBatisGeneratorConfiguration {
+public class MyBatisGeneratorConfig {
 
     List<String> warnings = new ArrayList<String>();
     boolean overwrite = true;
     String genCfg = "/generatorConfig.xml";
-    File configFile = new File(MyBatisGeneratorConfiguration.class.getResource(genCfg).getFile());
+    File configFile = new File(MyBatisGeneratorConfig.class.getResource(genCfg).getFile());
     ConfigurationParser cp = new ConfigurationParser(warnings);
     Configuration config = null;
 
@@ -23,7 +23,7 @@ public class MyBatisGeneratorConfiguration {
     DefaultShellCallback callback = new DefaultShellCallback(overwrite);
     MyBatisGenerator myBatisGenerator = null;
 
-    //myBatisGenerator = new MyBatisGeneratorConfiguration(config, callback, warnings);
+    //myBatisGenerator = new MyBatisGeneratorConfig(config, callback, warnings);
 
     //myBatisGenerator.generate(null);
 

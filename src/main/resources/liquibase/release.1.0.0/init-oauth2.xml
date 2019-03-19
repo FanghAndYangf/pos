@@ -19,22 +19,23 @@
             <column name="additional_information" type="varchar(255)" remarks="其他信息"></column>
             <column name="autoapprove" type="varchar(255)" remarks="提供者" defaultValue="false"></column>
         </createTable>
-        <createTable tableName="OAUTH_ACCESS_TOKEN" remarks="OAUTH token">
-            <column name="TOKEN_ID" type="varchar(255)" remarks="TOKEN ID"></column>
-            <column name="TOKEN" type="blob" remarks="TOKEN 信息"></column>
-            <column name="AUTHENTICATION_ID" type="varchar(255)" remarks="授权id"></column>
-            <column name="USER_NAME" type="varchar(255)" remarks="姓名"></column>
-            <column name="CLIENT_ID" type="varchar(255)" remarks="客户端id"></column>
-            <column name="AUTHENTICATION" type="blob" remarks="授权信息"></column>
-            <column name="REFRESH_TOKEN" type="varchar(255)" remarks="REFRESH TOKEN"></column>
+        <createTable tableName="oauth_access_token" remarks="OAUTH token">
+            <column name="token_id" type="varchar(255)" remarks="TOKEN ID"></column>
+            <column name="token" type="blob" remarks="TOKEN 信息"></column>
+            <column name="authentication_id" type="varchar(255)" remarks="授权id"></column>
+            <column name="user_name" type="varchar(255)" remarks="姓名"></column>
+            <column name="client_id" type="varchar(255)" remarks="客户端id"></column>
+            <column name="authentication" type="blob" remarks="授权信息"></column>
+            <column name="refresh_token" type="varchar(255)" remarks="REFRESH TOKEN"></column>
         </createTable>
-        <createTable tableName="OAUTH_REFRESH_TOKEN" remarks="REFRESH_TOKEN">
-            <column name="TOKEN_ID" type="varchar(255)" remarks="TOKEN_ID"></column>
-            <column name="AUTHENTICATION" type="blob" remarks="授权信息"></column>
+        <createTable tableName="oauth_refresh_token" remarks="REFRESH_TOKEN">
+            <column name="token_id" type="varchar(255)" remarks="TOKEN_ID"></column>
+            <column name="token" type="blob" remarks="TOKEN 信息"></column>
+            <column name="authentication" type="blob" remarks="授权信息"></column>
         </createTable>
-        <createTable tableName="OAUTH_CODE" remarks="OAUTH_CODE">
-            <column name="CODE" remarks="CODE" type="varchar(255)"></column>
-            <column name="AUTHENTICATION" type="blob" remarks="授权信息"></column>
+        <createTable tableName="oauth_code" remarks="OAUTH_CODE">
+            <column name="code" remarks="CODE" type="varchar(255)"></column>
+            <column name="authentication" type="blob" remarks="授权信息"></column>
         </createTable>
     </changeSet>
 </databaseChangeLog>

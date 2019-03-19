@@ -47,7 +47,7 @@ public class CashierController {
         RegisterCashierBody registerCashierBody = new RegisterCashierBody();
         registerCashierBody.setLoginId(String.valueOf(cashier.getCashierKey()));
         registerCashierBody.setCashierStatus(cashier.getCashierStatus());
-        registerCashierBody.setCashierDiscountLevel(cashier.getCashierDiscountLevel());
+        //registerCashierBody.setCashierDiscountLevel(cashier.getCashierDiscountLevel());
         r.setStatus("success");
         r.setData(registerCashierBody);
         r.setMessage("管理员创建成功!");
