@@ -74,7 +74,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .usernameParameter("username")
                 .passwordParameter("password")
-                .loginPage("/login.html")
+                .loginPage("/login1.html")
                 .successForwardUrl("/hello")
                 .failureUrl("/login?error")
                 .permitAll()                   //登陆页面任何人可访问
@@ -82,7 +82,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout().permitAll();*/          //注销行为任意访问
         httpSecurity.authorizeRequests()
                 .antMatchers("/", "/index").permitAll()
-                .antMatchers("/user/**").hasRole("ADMIN")
+                .antMatchers("/user/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -95,7 +95,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/layui/**");
+        web.ignoring().antMatchers("/static/**", "/templates/**","/start/**","/src/**");
     }
 
 }

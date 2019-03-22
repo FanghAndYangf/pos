@@ -57,6 +57,7 @@ spring:
   security:
     filter:
       order: 3
+
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.fanghong.pos.Model
