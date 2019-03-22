@@ -1,11 +1,11 @@
 layui.define(['laytpl', 'layer', 'element', 'util', 'table'], function(exports){
 
-  var table = layui.table;
+  /*var table = layui.table;
   table.set({
         where: { //通过参数传递
             access_token: layui.data('layuiAdmin').access_token
         }
-    });
+    });*/
 
   exports('setter', {
     container: 'LAY_app' //容器ID

@@ -68,5 +68,86 @@
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
 <script>
-    layui.use('cashier', function(){});
+    layui.use('table', function(){
+        var table = layui.table;
+        table.render({
+            elem: '#test'
+            ,url:'http://localhost:8087/api/v1/cashier'
+            ,type:'GET'
+            ,toolbar: '#toolbarDemo'
+            ,title: '收银员数据表'
+            ,cols: [[
+                {type: 'checkbox', fixed: 'left'}
+                ,{field:'cashierKey', title:'ID', width:80, fixed: 'left', unresize: true, sort: true}
+                ,{field:'userName', title:'用户名', width:120, edit: 'text'}
+                ,{field:'userMobile', title:'邮箱', width:150, edit: 'text', templet: function(res){
+                    return '<em>'+ res.mobile +'</em>'
+                }}
+                ,{field:'deptId', title:'部门', width:80, edit: 'text', sort: true}
+                ,{field:'cashierStatus', title:'状态', width:80}
+                ,{field:'registType', title:'注册类型', width:100}
+                ,{field:'resourceFrom', title:'注册来源', width:80}
+                ,{field:'cashierDiscountLevel', title:'折扣级别', width:120}
+                ,{field:'createts', title:'创建时间', width:120}
+                ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
+            ]]
+            ,page: {
+                layout: ['limit','count','prev','page','next','skip']
+                ,groups: 5
+                ,first: true
+                ,last: true
+            }
+            ,response: {
+                statusCode: 200 //重新规定成功的状态码为 200，table 组件默认为 0
+            }
+            ,parseData: function(res){
+                return {
+                    "code" : res.code
+                    ,"msg" : res.message
+                    ,"count": res.total
+                    ,"data" : res.data
+                }
+            }
+        });
+
+        //头工具栏事件
+        table.on('toolbar(test)', function(obj){
+            var checkStatus = table.checkStatus(obj.config.id);
+            switch(obj.event){
+                case 'getCheckData':
+                    var data = checkStatus.data;
+                    layer.alert(JSON.stringify(data));
+                    break;
+                case 'getCheckLength':
+                    var data = checkStatus.data;
+                    layer.msg('选中了：'+ data.length + ' 个');
+                    break;
+                case 'isAll':
+                    layer.msg(checkStatus.isAll ? '全选': '未全选');
+                    break;
+            };
+        });
+
+        //监听行工具事件
+        table.on('tool(test)', function(obj){
+            var data = obj.data;
+            //console.log(obj)
+            if(obj.event === 'del'){
+                layer.confirm('真的删除行么', function(index){
+                    obj.del();
+                    layer.close(index);
+                });
+            } else if(obj.event === 'edit'){
+                layer.prompt({
+                    formType: 2
+                    ,value: data.email
+                }, function(value, index){
+                    obj.update({
+                        email: value
+                    });
+                    layer.close(index);
+                });
+            }
+        });
+    });
 </script>
