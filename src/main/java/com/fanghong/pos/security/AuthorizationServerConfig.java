@@ -15,8 +15,8 @@ import org.springframework.security.oauth2.provider.token.store.redis.RedisToken
 import javax.annotation.Resource;
 import javax.sql.DataSource;
 
-@Configuration
-@EnableAuthorizationServer
+/**@Configuration
+@EnableAuthorizationServer**/
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
     @Resource

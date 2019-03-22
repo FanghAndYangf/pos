@@ -7,7 +7,7 @@ import lombok.Data;
 public class JsonResult {
 
     @ApiModelProperty(name="status", value = "状态值", notes = "返回状态")
-    private String status = null;
+    private String code = "0";
 
     @ApiModelProperty(name = "message", value = "状态信息", notes = "返回信息的内容")
     private String message = "";

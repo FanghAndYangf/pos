@@ -18,7 +18,7 @@ import javax.annotation.Resource;
 import java.util.Date;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/v1")
 @Api("收银机 Controller")
 public class PosController {
 
@@ -39,7 +39,6 @@ public class PosController {
         JsonResult r = new JsonResult();
         pos.setCreatets(new Date());        //创建日期
         int posKey = posService.addPos(pos);
-        r.setStatus("success");
         r.setMessage("收银机注册成功!");
         return ResponseEntity.ok(r);
     }
